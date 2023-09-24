@@ -1,8 +1,9 @@
+import * as S from './styled'
+
 export function HeaderLogo() {
   return (
-    <div>
-      <img src="/logoIcon.svg" alt="" />
-      <h1>Teachgram</h1>
-    </div>
+    <S.headerLogoStyled>
+      <img src="./logoAndText.svg" alt="" />
+    </S.headerLogoStyled>
   )
 }
