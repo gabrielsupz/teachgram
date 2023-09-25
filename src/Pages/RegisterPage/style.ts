@@ -9,6 +9,7 @@ import styled from 'styled-components'
 
 export const boxRegisterPageStyled = styled(boxPageStyled)``
 export const registerPageStyled = styled(mainPageStyled)`
+  position: relative;
   @media (min-width: 1300px) {
     h4 {
       margin-top: 44px;

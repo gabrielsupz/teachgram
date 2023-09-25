@@ -3,6 +3,7 @@ import { HeaderLogo } from '../../Components/HeaderLogo'
 import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
 import { useState } from 'react'
+import { BackArrowButton } from '../../Components/BackArrowButton'
 
 export function RegisterPage() {
   const [profilePhotoSection, setProfilePhotoSection] = useState<boolean>(true)
@@ -69,6 +70,7 @@ export function RegisterPage() {
           </>
         ) : (
           <>
+            <BackArrowButton />
             <S.profilePhotoInputBox>
               <h1>Insira o link da sua foto de perfil </h1>
               <div>

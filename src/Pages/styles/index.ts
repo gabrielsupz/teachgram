@@ -83,7 +83,7 @@ export const mainPageStyled = styled.main`
     margin-bottom: 120px;
 
     img.logo {
-      margin-top: 103px;
+      margin-top: 60px;
       height: 70px;
     }
 
