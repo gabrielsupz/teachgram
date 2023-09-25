@@ -1,5 +1,49 @@
 import styled from 'styled-components'
 
+export const boxPageStyled = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  img.loginAndRegisterImage {
+    display: none;
+  }
+
+  @media (min-width: 820px) {
+    img.loginAndRegisterImage {
+      display: flex;
+      width: 520px;
+    }
+  }
+  @media (min-width: 1300px) {
+    img.loginAndRegisterImage {
+      display: block;
+      width: 720px;
+    }
+  }
+
+  button.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0 12px 0;
+    width: 300px;
+    background-color: var(--red-color);
+    border-radius: 10px;
+    color: white;
+    border: 1px solid var(--red-color);
+    font-weight: 600;
+    font-size: 20px;
+    box-shadow: 0px 4px 21px -4px #00000066;
+    transition: all 0.3s;
+    margin-top: 24px;
+  }
+
+  button.submit:hover {
+    transition: all 0.3s;
+    background-color: var(--red-color-hover);
+  }
+`
+
 export const mainPageStyled = styled.main`
   width: 390px;
   display: flex;
@@ -34,6 +78,20 @@ export const mainPageStyled = styled.main`
       color: var(--red-color-hover);
     }
   }
+
+  @media (min-width: 1300px) {
+    margin-bottom: 120px;
+
+    img.logo {
+      margin-top: 103px;
+      height: 70px;
+    }
+
+    h1 {
+      margin-top: 121px;
+      margin-bottom: 9px;
+    }
+  }
 `
 export const labelAndInputStyledBase = styled.label`
   display: flex;
@@ -66,28 +124,6 @@ export const formBaseStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 24px;
-
-  button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px 0 12px 0;
-    width: 300px;
-    background-color: var(--red-color);
-    border-radius: 10px;
-    color: white;
-    border: 1px solid var(--red-color);
-    font-weight: 600;
-    font-size: 20px;
-    box-shadow: 0px 4px 21px -4px #00000066;
-    transition: all 0.3s;
-    margin-top: 24px;
-  }
-
-  button:hover {
-    transition: all 0.3s;
-    background-color: var(--red-color-hover);
-  }
 `
 export const alertBoxStyled = styled.div`
   position: relative;

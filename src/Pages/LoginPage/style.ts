@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import {
   alertBoxStyled,
+  boxPageStyled,
   formBaseStyled,
   labelAndInputStyledBase,
   mainPageStyled
 } from '../styles'
-export const loginPage = styled(mainPageStyled)``
 
+export const boxLoginPageStyled = styled(boxPageStyled)``
+export const loginPage = styled(mainPageStyled)``
 export const formStyled = styled(formBaseStyled)``
 
 export const labelAndInputStyled = styled(labelAndInputStyledBase)``
