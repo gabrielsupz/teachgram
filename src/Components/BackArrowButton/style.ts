@@ -3,11 +3,10 @@ import styled from 'styled-components'
 export const BackArrowButtonStyled = styled.button`
   background-color: white;
   border: none;
-  position: absolute;
-  left: 20px;
-  top: -25px;
 
+  cursor: pointer;
   img {
+    transition: all 0.3s;
     width: 12px;
     height: 12px;
   }
@@ -18,8 +17,11 @@ export const BackArrowButtonStyled = styled.button`
       height: 26px;
     }
   }
-  @media (min-width: 1300px) {
-    top: 20px;
-    left: -70px;
+
+  &:hover {
+    img {
+      transition: all 0.3s;
+      scale: 1.1;
+    }
   }
 `

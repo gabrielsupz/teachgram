@@ -108,7 +108,7 @@ export const labelAndInputStyledBase = styled.label`
   }
 
   input::placeholder {
-    color: var(--placeholder-link-color);
+    color: var(--light-grey-color);
   }
 
   input:focus {

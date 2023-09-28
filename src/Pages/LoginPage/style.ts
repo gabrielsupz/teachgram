@@ -26,7 +26,7 @@ export const rememberAndForgotPassword = styled(alertBoxStyled)`
   }
 
   a {
-    color: var(--placeholder-link-color);
+    color: var(--light-grey-color);
   }
 `
 export const enterWithStyled = styled.div`

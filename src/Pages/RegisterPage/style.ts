@@ -15,6 +15,17 @@ export const registerPageStyled = styled(mainPageStyled)`
       margin-top: 44px;
     }
   }
+
+  #backArroButton {
+    position: absolute;
+    left: 20px;
+    top: -25px;
+
+    @media (min-width: 1300px) {
+      top: 20px;
+      left: -70px;
+    }
+  }
 `
 export const labelAndInputsStyled = styled(labelAndInputStyledBase)``
 export const formStyled = styled(formBaseStyled)``

@@ -1,7 +1,5 @@
 import * as S from './style'
 import { HeaderLogo } from '../../Components/HeaderLogo'
-import { FcGoogle } from 'react-icons/fc'
-import { BsApple } from 'react-icons/bs'
 import { useState } from 'react'
 import { BackArrowButton } from '../../Components/BackArrowButton'
 
@@ -11,6 +9,11 @@ export function RegisterPage() {
     if (profilePhotoSection) {
       setProfilePhotoSection(false)
     } else setProfilePhotoSection(true)
+  }
+  const handleBackArrowButton = () => {
+    profilePhotoSection
+      ? setProfilePhotoSection(false)
+      : setProfilePhotoSection(true)
   }
 
   return (
@@ -70,7 +73,7 @@ export function RegisterPage() {
           </>
         ) : (
           <>
-            <BackArrowButton />
+            <BackArrowButton backFunction={handleBackArrowButton} />
             <S.profilePhotoInputBox>
               <h1>Insira o link da sua foto de perfil </h1>
               <div>

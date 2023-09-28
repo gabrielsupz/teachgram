@@ -1,8 +1,10 @@
 import * as S from './style'
-
-export function BackArrowButton() {
+interface BackArrowButtonProps {
+  backFunction: () => void
+}
+export function BackArrowButton({ backFunction }: BackArrowButtonProps) {
   return (
-    <S.BackArrowButtonStyled>
+    <S.BackArrowButtonStyled id="backArroButton" onClick={() => backFunction()}>
       <img
         src="/backArrow.svg"
         alt="Botão com iamgem de seta para a esquerda"
