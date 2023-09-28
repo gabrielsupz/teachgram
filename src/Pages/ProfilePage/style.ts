@@ -47,11 +47,19 @@ export const profilePageStyled = styled(boxPageStyled)`
     @media (min-width: 1300px) {
     }
   }
+
+  @media (min-width: 750px) {
+    display: flex;
+    flex-direction: row;
+  }
 `
 export const headerProfilePageStyle = styled.header`
   display: flex;
   width: 100%;
   justify-content: space-between;
+  @media (min-width: 750px) {
+    display: none;
+  }
 `
 
 export const threeDotsButton = styled.button`

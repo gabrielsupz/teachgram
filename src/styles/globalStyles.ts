@@ -11,6 +11,7 @@ ${reset}
   --red-color:  #F37671;
   --red-color-hover:  #f55e58;
   --grey-color:  #A09F9F;
+ --navigate-text-color: #8E8E8E;
 
  font-family: 'Inter', sans-serif;
 }

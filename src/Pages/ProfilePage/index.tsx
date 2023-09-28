@@ -1,5 +1,6 @@
 import * as S from './style'
 import { BackArrowButton } from '../../Components/BackArrowButton'
+import { Aside } from '../../Components/Aside'
 
 export function ProfilePage() {
   const isFriends = true
@@ -25,6 +26,7 @@ export function ProfilePage() {
           </svg>
         </S.threeDotsButton>
       </S.headerProfilePageStyle>
+      <Aside />
 
       <main>
         <S.profileInfoBoxStyle>
