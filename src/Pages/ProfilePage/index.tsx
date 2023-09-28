@@ -2,7 +2,7 @@ import * as S from './style'
 import { BackArrowButton } from '../../Components/BackArrowButton'
 
 export function ProfilePage() {
-  const isFriends = false
+  const isFriends = true
   const handleBackArrobutton = () => {
     console.log('Clicou, foda! :)')
   }
@@ -47,10 +47,20 @@ export function ProfilePage() {
               <strong>100</strong>Amigos
             </h5>
             {isFriends ? (
-              <S.addFrienButtonStyle>Adicionar</S.addFrienButtonStyle>
+              <S.addFrienButtonStyle>
+                Adicionar
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </S.addFrienButtonStyle>
             ) : (
               <S.unfriendButtonStyle>
-                Amigos{' '}
+                Amigos
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <svg
                   width="10"
                   height="8"
@@ -80,6 +90,18 @@ export function ProfilePage() {
           />
           <img
             src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png"
+            alt=""
+          />
+          <img
+            src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png"
+            alt=""
+          />
+          <img
+            src="https://i.pinimg.com/236x/35/cc/35/35cc357473dcc4c3f367c3f6fc12fbef.jpg"
+            alt=""
+          />
+          <img
+            src="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
             alt=""
           />
           <img

@@ -4,6 +4,7 @@ import { boxPageStyled } from '../styles'
 export const profilePageStyled = styled(boxPageStyled)`
   flex-direction: column;
   padding-top: 33px;
+  padding-bottom: 50px;
   width: 300px;
   margin: auto;
   gap: 33px;
@@ -104,6 +105,7 @@ export const buttonFriendStyled = styled.button`
   box-shadow: 0px 4px 21px -4px #00000033;
   border: none;
   transition: all 0.3s;
+
   &:hover {
     transition: all 0.3s;
   }
@@ -111,9 +113,43 @@ export const buttonFriendStyled = styled.button`
 
 export const addFrienButtonStyle = styled(buttonFriendStyled)`
   background-color: var(--red-color);
+  --c: var(--red-color-hover);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 
-  &:hover {
-    background-color: var(--red-color-hover);
+  span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: var(--c);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+  }
+
+  &:hover span {
+    transform: translateY(0) scale(2);
+  }
+
+  & span:nth-child(1) {
+    --n: 1;
+  }
+
+  & span:nth-child(2) {
+    --n: 2;
+  }
+
+  & span:nth-child(3) {
+    --n: 3;
+  }
+
+  & span:nth-child(4) {
+    --n: 4;
   }
 `
 export const unfriendButtonStyle = styled(buttonFriendStyled)`
@@ -121,13 +157,56 @@ export const unfriendButtonStyle = styled(buttonFriendStyled)`
   color: var(--light-grey-color);
   border: 1px solid var(--light-grey-color);
 
+  --c: var(--light-grey-color);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+
+  span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: var(--c);
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.3s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+  }
+  svg {
+    margin-left: 5px;
+  }
   &:hover {
     color: white;
-    background-color: var(--light-grey-color);
 
     path {
       stroke: white;
     }
+  }
+
+  &:hover span {
+    transform: translateY(0) scale(2);
+  }
+
+  & span:nth-child(5) {
+    --n: 5;
+  }
+  & span:nth-child(1) {
+    --n: 1;
+  }
+
+  & span:nth-child(2) {
+    --n: 2;
+  }
+
+  & span:nth-child(3) {
+    --n: 3;
+  }
+
+  & span:nth-child(4) {
+    --n: 4;
   }
 `
 
