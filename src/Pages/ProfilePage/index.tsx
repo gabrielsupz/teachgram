@@ -3,7 +3,7 @@ import { BackArrowButton } from '../../Components/BackArrowButton'
 import { Aside } from '../../Components/Aside'
 
 export function ProfilePage() {
-  const isFriends = true
+  const isFriends = false
   const handleBackArrobutton = () => {
     console.log('Clicou, foda! :)')
   }
@@ -34,52 +34,54 @@ export function ProfilePage() {
             src="https://avatars.githubusercontent.com/u/102992996?s=400&u=80dfdee29368bfbd801dd0d3d6f27a84009a10f1&v=4"
             alt=""
           />
-          <h2>Gabriel Suptitz</h2>
-          <h4>Desenvolvedor</h4>
-          <p>
-            A programação foi o caminho que escolhi, dev foi a profissão que me
-            fez querer evoluir e o código me deixou feliz com resultados, por
-            isso abracei a ideia.
-          </p>
-          <div>
-            <h5>
-              <strong>50</strong>Posts
-            </h5>
-            <h5>
-              <strong>100</strong>Amigos
-            </h5>
-            {isFriends ? (
-              <S.addFrienButtonStyle>
-                Adicionar
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </S.addFrienButtonStyle>
-            ) : (
-              <S.unfriendButtonStyle>
-                Amigos
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <svg
-                  width="10"
-                  height="8"
-                  viewBox="0 0 10 8"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M1.04612 3.78052L3.63542 6.31263C3.84152 6.51418 4.1749 6.50016 4.36335 6.28203L8.927 0.999817"
-                    stroke="#666666"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </svg>
-              </S.unfriendButtonStyle>
-            )}
-          </div>
+          <S.nameAndDescriptionDivSyled>
+            <h2>Gabriel Suptitz</h2>
+            <h4>Desenvolvedor</h4>
+            <p>
+              A programação foi o caminho que escolhi, dev foi a profissão que
+              me fez querer evoluir e o código me deixou feliz com resultados,
+              por isso abracei a ideia.
+            </p>
+            <div>
+              <h5>
+                <strong>50</strong>Posts
+              </h5>
+              <h5>
+                <strong>100</strong>Amigos
+              </h5>
+              {isFriends ? (
+                <S.addFrienButtonStyle>
+                  Adicionar
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </S.addFrienButtonStyle>
+              ) : (
+                <S.unfriendButtonStyle>
+                  Amigos
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <svg
+                    width="10"
+                    height="8"
+                    viewBox="0 0 10 8"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M1.04612 3.78052L3.63542 6.31263C3.84152 6.51418 4.1749 6.50016 4.36335 6.28203L8.927 0.999817"
+                      stroke="#666666"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </S.unfriendButtonStyle>
+              )}
+            </div>
+          </S.nameAndDescriptionDivSyled>
         </S.profileInfoBoxStyle>
         <S.imgBoxStyled>
           <img

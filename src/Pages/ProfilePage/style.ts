@@ -8,6 +8,10 @@ export const profilePageStyled = styled(boxPageStyled)`
   width: 300px;
   margin: auto;
   gap: 33px;
+
+  @media (min-width: 1300px) {
+    justify-content: space-around;
+  }
   h2 {
     font-size: 20px;
     font-weight: 600;
@@ -79,11 +83,28 @@ export const profileInfoBoxStyle = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  position: relative;
+  @media (min-width: 750px) {
+    padding-bottom: 100px;
+  }
+  @media (min-width: 1300px) {
+    flex-direction: row;
+    padding-bottom: 150px;
+  }
+`
+
+export const nameAndDescriptionDivSyled = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  gap: 20px;
 
   div {
     display: flex;
     justify-content: center;
     width: 100%;
+
     h5 {
       display: flex;
       justify-content: center;
@@ -98,6 +119,78 @@ export const profileInfoBoxStyle = styled.div`
 
     h5:nth-child(2) {
       padding-left: 23px;
+    }
+  }
+
+  @media (min-width: 750px) {
+    align-items: center;
+    h2,
+    h4,
+    p {
+      width: 350px;
+      padding-left: 50px;
+      text-align: justify;
+    }
+    h2 {
+      font-size: 20px;
+    }
+
+    h4 {
+      font-size: 16px;
+    }
+    div {
+      justify-content: flex-start;
+      padding-left: 100px;
+      h5 {
+        position: absolute;
+        bottom: 0;
+        font-size: 18px;
+        font-weight: 400;
+
+        strong {
+          font-size: 20px;
+        }
+      }
+      h5:nth-child(1) {
+        left: 30%;
+        padding-right: 30px;
+      }
+      h5:nth-child(2) {
+        left: 50%;
+        p
+      }
+    }
+  }
+  @media (min-width: 1300px) {
+    align-items: flex-start;
+    h2,
+    h4,
+    p {
+      padding-left: 100px;
+ 
+    }
+    h2 {
+      font-size: 25px;
+    }
+
+    h4 {
+      font-size: 20px;
+    }
+    div {
+      justify-content: flex-start;
+      padding-left: 100px;
+      h5 {
+       
+        font-size: 20px;
+        font-weight: 400;
+
+      
+      }
+      h5:nth-child(1) {
+        left: 40%;
+        padding-right: 30px;
+      }
+     
     }
   }
 `
@@ -116,6 +209,11 @@ export const buttonFriendStyled = styled.button`
 
   &:hover {
     transition: all 0.3s;
+  }
+
+  @media (min-width: 750px) {
+    margin: 0;
+    height: 32px;
   }
 `
 
@@ -223,6 +321,11 @@ export const imgProfileSyled = styled.img`
   height: 176px;
   border: 1.18px solid #dfdfdf;
   border-radius: 100%;
+
+  @media (min-width: 1300px) {
+    width: 300px;
+    height: 300px;
+  }
 `
 
 export const imgBoxStyled = styled.div`
@@ -234,5 +337,12 @@ export const imgBoxStyled = styled.div`
     height: 100%;
     object-fit: cover;
     border: 1px solid #ffffff;
+  }
+
+  @media (min-width: 1300px) {
+    img {
+      width: 280px;
+      height: 280px;
+    }
   }
 `

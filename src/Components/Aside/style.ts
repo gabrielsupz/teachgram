@@ -6,6 +6,9 @@ export const asideStyled = styled.aside`
   @media (min-width: 750px) {
     display: flex;
   }
+  @media (min-width: 1300px) {
+    margin-right: 50px;
+  }
 
   header {
     img {
