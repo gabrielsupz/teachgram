@@ -4,12 +4,15 @@ import { HeaderLogo } from '../HeaderLogo'
 import * as S from './style'
 
 export function Aside() {
+  const handleBackArrowButton = () => {
+    console.log('Clicou Aqui!')
+  }
   return (
     <S.asideStyled>
-      <div>
-        {/* <BackArrowButton /> */}
+      <S.arrowAndHeaderStyle>
+        <BackArrowButton backFunction={handleBackArrowButton} />
         <HeaderLogo />
-      </div>
+      </S.arrowAndHeaderStyle>
       <S.navigateAsideButtonsStyled>
         <NavigateButton
           children={

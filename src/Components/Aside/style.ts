@@ -24,3 +24,7 @@ export const navigateAsideButtonsStyled = styled.nav`
   flex-direction: column;
   gap: 37px;
 `
+export const arrowAndHeaderStyle = styled.div`
+  display: flex;
+  gap: 20px;
+`
