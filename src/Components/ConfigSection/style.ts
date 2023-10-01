@@ -5,12 +5,39 @@ export const contentConfigSectionStyled = styled.div`
   display: flex;
   justify-content: center;
   position: absolute;
-  padding-top: 32px;
 
   margin-bottom: 50px;
+
+  .update,
+  .confirm {
+    background-color: var(--red-color);
+    color: white;
+    border: none;
+    box-shadow: 0px 4px 21px -4px #00000066;
+  }
+
+  .return,
+  .cancel {
+    background-color: transparent;
+    border: 1px solid var(--red-color);
+    color: var(--red-color);
+  }
+
+  .update:hover,
+  .confirm:hover {
+    transition: all 0.3s;
+    background-color: var(--red-color-hover);
+  }
+  .return:hover,
+  .cancel:hover {
+    transition: all 0.3s;
+    background-color: var(--red-color-hover);
+    color: white;
+  }
 `
 
 export const configSection = styled.section`
+  padding-top: 32px;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -87,25 +114,61 @@ export const inSpecificSection = styled.section`
     font-size: 15px;
     transition: all 0.3s;
   }
-  .update {
-    background-color: var(--red-color);
-    color: white;
-    border: none;
-    box-shadow: 0px 4px 21px -4px #00000066;
-  }
+`
+export const deleteAccountDiv = styled.div`
+  display: none;
+  width: 0;
+  height: 0;
+  z-index: -100;
+  position: relative;
 
-  .return {
-    background-color: transparent;
-    border: 1px solid var(--red-color);
-    color: var(--red-color);
-  }
+  &.active {
+    z-index: 1;
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    background: #30303059;
+    align-items: center;
 
-  .update:hover {
-    transition: all 0.3s;
-    background-color: var(--red-color-hover);
-  }
-  .return:hover {
-    transition: all 0.3s;
-    background-color: var(--red-color-hover);
+    div:first-child {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: white;
+      height: max-content;
+      min-height: 300px;
+      min-width: 300px;
+      border-radius: 34px;
+      gap: 40px;
+      h3 {
+        font-size: 25px;
+        font-weight: 600;
+        color: var(--text-color);
+        border-bottom: 2px solid #cecece;
+        padding-bottom: 30px;
+        width: 100%;
+        text-align: center;
+      }
+      p {
+        width: 250px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 400;
+      }
+      button {
+        width: 85px;
+        height: 35px;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.3s;
+      }
+      div:last-child {
+        display: flex;
+        gap: 20px;
+      }
+    }
   }
 `

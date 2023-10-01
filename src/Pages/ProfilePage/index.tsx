@@ -6,11 +6,16 @@ import { ConfigSection } from '../../Components/ConfigSection'
 
 export function ProfilePage() {
   const { configSection, setConfigSection } = useConfigSection()
-
   const isFriends = false
+
   const handleBackArrobutton = () => {
     console.log('Clicou, foda! :)')
   }
+
+  const handleConfigButton = () => {
+    setConfigSection(true)
+  }
+
   if (configSection) {
     return <ConfigSection />
   } else
@@ -18,7 +23,7 @@ export function ProfilePage() {
       <S.profilePageStyled>
         <S.headerProfilePageStyle>
           <BackArrowButton backFunction={handleBackArrobutton} />
-          <S.threeDotsButton>
+          <S.threeDotsButton onClick={() => handleConfigButton()}>
             <svg
               width="5"
               height="19"
@@ -43,7 +48,9 @@ export function ProfilePage() {
             <S.nameAndDescriptionDivSyled>
               <h2>
                 Gabriel Suptitz{' '}
-                <img src="/configButton.svg" alt="Ícone de engrenagem " />
+                <button onClick={() => handleConfigButton()}>
+                  <img src="/configButton.svg" alt="Ícone de engrenagem " />
+                </button>
               </h2>
               <h4>Desenvolvedor</h4>
               <p>

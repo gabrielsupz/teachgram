@@ -104,11 +104,14 @@ export const nameAndDescriptionDivSyled = styled.div`
   h2:first-child {
     position: relative;
   }
-  h2 img {
+  h2 button {
     position: absolute;
     right: 0;
     top: 10px;
     cursor: pointer;
+    border: none;
+    background-color: transparent;
+    display: none;
   }
 
   h2 img:hover {
@@ -152,6 +155,12 @@ export const nameAndDescriptionDivSyled = styled.div`
 
     h4 {
       font-size: 16px;
+    }
+
+    h2 {
+      button {
+        display: flex;
+      }
     }
     div {
       justify-content: flex-start;

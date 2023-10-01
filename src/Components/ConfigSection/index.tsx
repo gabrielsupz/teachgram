@@ -20,6 +20,12 @@ export function ConfigSection() {
   const handleConfigButton = (section: InConfigType) => {
     setInConfig(section)
   }
+
+  const addAndRemoveActiveInDeleteAccountDiv = () => {
+    const deleteAccountDiv = document.getElementById('deleteAccountDiv')
+    if (deleteAccountDiv) deleteAccountDiv.classList.toggle('active')
+  }
+
   return (
     <S.contentConfigSectionStyled>
       {inConfig.section === 'nav' ? (
@@ -39,7 +45,9 @@ export function ConfigSection() {
               Editar Perfil <img src="/rightArrow.svg" alt="" />
             </button>
 
-            <button>Excluir conta</button>
+            <button onClick={() => addAndRemoveActiveInDeleteAccountDiv()}>
+              Excluir conta
+            </button>
           </div>
         </S.configSection>
       ) : inConfig.section === 'configAccount' ? (
@@ -91,6 +99,22 @@ export function ConfigSection() {
           </div>
         </S.inSpecificSection>
       )}
+      <S.deleteAccountDiv id="deleteAccountDiv">
+        <div>
+          <h3>Excluir conta</h3>
+          <p>Todos os seus dados serão excluídos.</p>
+
+          <div>
+            <button
+              onClick={() => addAndRemoveActiveInDeleteAccountDiv()}
+              className="cancel"
+            >
+              Cancelar
+            </button>
+            <button className="confirm">Confirmar</button>
+          </div>
+        </div>
+      </S.deleteAccountDiv>
     </S.contentConfigSectionStyled>
   )
 }
