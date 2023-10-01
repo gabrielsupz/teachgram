@@ -100,6 +100,7 @@ export const nameAndDescriptionDivSyled = styled.div`
 
   align-items: center;
   gap: 20px;
+
   h2:first-child {
     position: relative;
   }

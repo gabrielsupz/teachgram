@@ -43,9 +43,7 @@ export function ProfilePage() {
             <S.nameAndDescriptionDivSyled>
               <h2>
                 Gabriel Suptitz{' '}
-                <div>
-                  <img src="/configButton.svg" alt="Ícone de engrenagem " />
-                </div>
+                <img src="/configButton.svg" alt="Ícone de engrenagem " />
               </h2>
               <h4>Desenvolvedor</h4>
               <p>

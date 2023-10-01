@@ -13,7 +13,7 @@ const ConfigSectionContext = createContext<ConfigSectionContextType>(
 )
 
 export const ConfigSectionProvider = ({ children }: ConfigSectionProvider) => {
-  const [configSection, setConfigSection] = useState<boolean>(true)
+  const [configSection, setConfigSection] = useState<boolean>(false)
   return (
     <ConfigSectionContext.Provider value={{ configSection, setConfigSection }}>
       {children}
