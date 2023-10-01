@@ -1,5 +1,5 @@
 import { BackArrowButton } from '../BackArrowButton'
-import { NavigateButton } from '../Button'
+import { NavigateButton } from '../NavigateButton'
 import { HeaderLogo } from '../HeaderLogo'
 import * as S from './style'
 

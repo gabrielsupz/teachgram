@@ -9,7 +9,7 @@ export const profilePageStyled = styled(boxPageStyled)`
   margin: auto;
   gap: 33px;
 
-  @media (min-width: 1300px) {
+  @media (min-width: 1250px) {
     justify-content: space-around;
   }
   h2 {
@@ -48,7 +48,7 @@ export const profilePageStyled = styled(boxPageStyled)`
       width: 19px;
     }
 
-    @media (min-width: 1300px) {
+    @media (min-width: 1250px) {
     }
   }
 
@@ -57,6 +57,7 @@ export const profilePageStyled = styled(boxPageStyled)`
     flex-direction: row;
   }
 `
+
 export const headerProfilePageStyle = styled.header`
   display: flex;
   width: 100%;
@@ -87,7 +88,7 @@ export const profileInfoBoxStyle = styled.div`
   @media (min-width: 750px) {
     padding-bottom: 100px;
   }
-  @media (min-width: 1300px) {
+  @media (min-width: 1250px) {
     flex-direction: row;
     padding-bottom: 150px;
   }
@@ -99,6 +100,19 @@ export const nameAndDescriptionDivSyled = styled.div`
 
   align-items: center;
   gap: 20px;
+  h2:first-child {
+    position: relative;
+  }
+  h2 img {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    cursor: pointer;
+  }
+
+  h2 img:hover {
+    animation: var(--rotate-animation);
+  }
 
   div {
     display: flex;
@@ -157,17 +171,16 @@ export const nameAndDescriptionDivSyled = styled.div`
       }
       h5:nth-child(2) {
         left: 50%;
-        p
       }
     }
   }
-  @media (min-width: 1300px) {
+  @media (min-width: 1250px) {
     align-items: flex-start;
+
     h2,
     h4,
     p {
       padding-left: 100px;
- 
     }
     h2 {
       font-size: 25px;
@@ -180,20 +193,17 @@ export const nameAndDescriptionDivSyled = styled.div`
       justify-content: flex-start;
       padding-left: 100px;
       h5 {
-       
         font-size: 20px;
         font-weight: 400;
-
-      
       }
       h5:nth-child(1) {
         left: 40%;
         padding-right: 30px;
       }
-     
     }
   }
 `
+
 export const buttonFriendStyled = styled.button`
   margin-left: 37px;
   font-size: 15px;
@@ -322,7 +332,7 @@ export const imgProfileSyled = styled.img`
   border: 1.18px solid #dfdfdf;
   border-radius: 100%;
 
-  @media (min-width: 1300px) {
+  @media (min-width: 1250px) {
     width: 300px;
     height: 300px;
   }
@@ -339,7 +349,7 @@ export const imgBoxStyled = styled.div`
     border: 1px solid #ffffff;
   }
 
-  @media (min-width: 1300px) {
+  @media (min-width: 1250px) {
     img {
       width: 280px;
       height: 280px;

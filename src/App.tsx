@@ -1,3 +1,4 @@
+import { ConfigSectionProvider } from './Contexts/ConfigSectionContext'
 import { LoginPage } from './Pages/LoginPage'
 import { ProfilePage } from './Pages/ProfilePage'
 import { RegisterPage } from './Pages/RegisterPage'
@@ -7,13 +8,15 @@ function App() {
   return (
     <>
       <GlobalStyleAndReset />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-        </Routes>
-      </BrowserRouter>
+      <ConfigSectionProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+          </Routes>
+        </BrowserRouter>
+      </ConfigSectionProvider>
     </>
   )
 }

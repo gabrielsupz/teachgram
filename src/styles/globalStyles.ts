@@ -12,6 +12,7 @@ ${reset}
   --red-color-hover:  #f55e58;
   --grey-color:  #A09F9F;
  --navigate-text-color: #8E8E8E;
+ --rotate-animation: rotate 2s infinite linear;
 
  font-family: 'Inter', sans-serif;
 }
