@@ -1,9 +1,11 @@
 import { BackArrowButton } from '../BackArrowButton'
-import { NavigateButton } from '../NavigatButton'
+import { NavigateButton } from '../NavigateButton'
 import { HeaderLogo } from '../HeaderLogo'
 import * as S from './style'
+import { useConfigSection } from '../../Contexts/ConfigSectionContext'
 
 export function Aside() {
+  const { setConfigSection } = useConfigSection()
   const handleBackArrowButton = () => {
     console.log('Clicou Aqui!')
   }
@@ -63,6 +65,7 @@ export function Aside() {
           text="Perfil"
         />
         <NavigateButton
+          onClickFunction={() => setConfigSection(true)}
           children={
             <>
               <svg

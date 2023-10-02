@@ -1,4 +1,6 @@
 import { ConfigSectionProvider } from './Contexts/ConfigSectionContext'
+import { FriendsListProvider } from './Contexts/FriendsListContext'
+import { FeedPage } from './Pages/FeedPage'
 import { LoginPage } from './Pages/LoginPage'
 import { ProfilePage } from './Pages/ProfilePage'
 import { RegisterPage } from './Pages/RegisterPage'
@@ -8,15 +10,18 @@ function App() {
   return (
     <>
       <GlobalStyleAndReset />
-      <ConfigSectionProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </Routes>
-        </BrowserRouter>
-      </ConfigSectionProvider>
+      <FriendsListProvider>
+        <ConfigSectionProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route path="/profile" element={<ProfilePage />} />
+              <Route path="/feed" element={<FeedPage />} />
+            </Routes>
+          </BrowserRouter>
+        </ConfigSectionProvider>
+      </FriendsListProvider>
     </>
   )
 }
