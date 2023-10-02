@@ -51,53 +51,69 @@ export function ConfigSection() {
           </div>
         </S.configSection>
       ) : inConfig.section === 'configAccount' ? (
-        <S.inSpecificSection>
-          <h2>Configurações da conta</h2>
-          <div>
-            <ConfigInput name="Nome" placeholder="Gabriel Suptitz" />
-            <ConfigInput name="Email" placeholder="exemple@email.com" />
-            <ConfigInput name="Celular" placeholder="051997464822" />
-            <ConfigInput name="Senha" type="password" placeholder="********" />
-          </div>
-          <div className="buttonsBox">
-            <button
-              className="return"
-              onClick={() => handleConfigButton({ section: 'nav' })}
-            >
-              Voltar
-            </button>
-            <button className="update">Atualizar</button>
-          </div>
-        </S.inSpecificSection>
-      ) : (
-        <S.inSpecificSection>
-          <h2>Editar Perfil</h2>
-          <img
-            src="https://avatars.githubusercontent.com/u/102992996?s=400&u=80dfdee29368bfbd801dd0d3d6f27a84009a10f1&v=4"
-            alt=""
+        <>
+          {' '}
+          <BackArrowButton
+            backFunction={() => setInConfig({ section: 'nav' })}
           />
-          <div>
-            <ConfigInput
-              name="Foto de perfil"
-              placeholder="https://www.google.com/search?sca_..."
+          <S.inSpecificSection>
+            <h2>Configurações da conta</h2>
+            <div className="configAccountInputs">
+              <ConfigInput name="Nome" placeholder="Gabriel Suptitz" />
+              <ConfigInput name="Email" placeholder="exemple@email.com" />
+              <ConfigInput name="Celular" placeholder="051997464822" />
+              <ConfigInput
+                name="Senha"
+                type="password"
+                placeholder="********"
+              />
+            </div>
+            <div className="buttonsBox">
+              <button
+                className="return"
+                onClick={() => handleConfigButton({ section: 'nav' })}
+              >
+                Voltar
+              </button>
+              <button className="update">Salvar</button>
+            </div>
+          </S.inSpecificSection>
+        </>
+      ) : (
+        <>
+          {' '}
+          <BackArrowButton
+            backFunction={() => setInConfig({ section: 'nav' })}
+          />{' '}
+          <S.inSpecificSection>
+            <h2>Editar Perfil</h2>
+            <img
+              src="https://avatars.githubusercontent.com/u/102992996?s=400&u=80dfdee29368bfbd801dd0d3d6f27a84009a10f1&v=4"
+              alt=""
             />
-            <ConfigInput name="Nome" placeholder="Gabriel Suptitz" />
-            <ConfigInput name="Nome do usário" placeholder="GabrielSupz" />
-            <ConfigInput
-              name="Bio"
-              placeholder="O melhor de mim ainda está por vir. 🌹"
-            />
-          </div>
-          <div className="buttonsBox">
-            <button
-              className="return"
-              onClick={() => handleConfigButton({ section: 'nav' })}
-            >
-              Voltar
-            </button>
-            <button className="update">Atualizar</button>
-          </div>
-        </S.inSpecificSection>
+            <div className="updateProfileInputs">
+              <ConfigInput
+                name="Foto de perfil"
+                placeholder="https://www.google.com/search?sca_..."
+              />
+              <ConfigInput name="Nome" placeholder="Gabriel Suptitz" />
+              <ConfigInput name="Nome do usário" placeholder="GabrielSupz" />
+              <ConfigInput
+                name="Bio"
+                placeholder="O melhor de mim ainda está por vir. 🌹"
+              />
+            </div>
+            <div className="buttonsBox">
+              <button
+                className="return"
+                onClick={() => handleConfigButton({ section: 'nav' })}
+              >
+                Voltar
+              </button>
+              <button className="update">Atualizar</button>
+            </div>
+          </S.inSpecificSection>
+        </>
       )}
       <S.deleteAccountDiv id="deleteAccountDiv">
         <div>
@@ -115,6 +131,7 @@ export function ConfigSection() {
           </div>
         </div>
       </S.deleteAccountDiv>
+      <div id="imgRectangle"></div>
     </S.contentConfigSectionStyled>
   )
 }

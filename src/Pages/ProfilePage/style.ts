@@ -43,7 +43,7 @@ export const profilePageStyled = styled(boxPageStyled)`
     flex-direction: column;
     gap: 31px;
   }
-  #backArroButton {
+  #backArrowButton {
     img {
       width: 19px;
     }
@@ -365,4 +365,9 @@ export const imgBoxStyled = styled.div`
       height: 280px;
     }
   }
+`
+export const configSectionBoxStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: max-content;
 `

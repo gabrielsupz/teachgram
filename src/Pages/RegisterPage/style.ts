@@ -16,7 +16,7 @@ export const registerPageStyled = styled(mainPageStyled)`
     }
   }
 
-  #backArroButton {
+  #backArrowButton {
     position: absolute;
     left: 20px;
     top: -25px;

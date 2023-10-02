@@ -4,9 +4,6 @@ export const contentConfigSectionStyled = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  position: absolute;
-
-  margin-bottom: 50px;
 
   .update,
   .confirm {
@@ -34,6 +31,27 @@ export const contentConfigSectionStyled = styled.div`
     background-color: var(--red-color-hover);
     color: white;
   }
+  #backArrowButton {
+    display: none;
+  }
+
+  @media (min-width: 750px) {
+    position: initial;
+    justify-content: space-between;
+
+    #backArrowButton {
+      display: block;
+      position: absolute;
+      left: 60px;
+      top: 50px;
+    }
+
+    #imgRectangle {
+      min-height: 100vh;
+      min-width: 300px;
+      background-image: url('/rectangle.svg');
+    }
+  }
 `
 
 export const configSection = styled.section`
@@ -46,7 +64,7 @@ export const configSection = styled.section`
   margin-left: auto;
   margin-right: auto;
   gap: 105px;
-  #backArroButton {
+  #backArrowButton {
     display: flex;
     align-self: left;
   }
@@ -74,6 +92,18 @@ export const configSection = styled.section`
       text-decoration: underline;
     }
   }
+
+  @media (min-width: 750px) {
+    width: 400px;
+    margin-top: 100px;
+    position: initial;
+    margin-left: 200px;
+
+    div button {
+      width: 100%;
+      font-size: 25px;
+    }
+  }
 `
 
 export const inSpecificSection = styled.section`
@@ -94,6 +124,7 @@ export const inSpecificSection = styled.section`
     font-weight: 600;
     margin-bottom: 55px;
   }
+
   div {
     gap: 8px;
     display: flex;
@@ -113,6 +144,21 @@ export const inSpecificSection = styled.section`
     border-radius: 8px;
     font-size: 15px;
     transition: all 0.3s;
+  }
+
+  @media (min-width: 750px) {
+    position: initial;
+    div {
+      gap: 13px;
+    }
+
+    img {
+      align-self: flex-start;
+    }
+    margin-left: 200px;
+    h2 {
+      font-size: 25px;
+    }
   }
 `
 export const deleteAccountDiv = styled.div`
@@ -168,6 +214,24 @@ export const deleteAccountDiv = styled.div`
       div:last-child {
         display: flex;
         gap: 20px;
+      }
+    }
+  }
+
+  @media (min-width: 750px) {
+    height: 100%;
+
+    &.active {
+      div:first-child {
+        width: 528px;
+        height: 310px;
+      }
+
+      div {
+        button.cancel,
+        button.confirm {
+          width: 150px;
+        }
       }
     }
   }

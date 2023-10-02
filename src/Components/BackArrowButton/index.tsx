@@ -4,7 +4,10 @@ interface BackArrowButtonProps {
 }
 export function BackArrowButton({ backFunction }: BackArrowButtonProps) {
   return (
-    <S.BackArrowButtonStyled id="backArroButton" onClick={() => backFunction()}>
+    <S.BackArrowButtonStyled
+      id="backArrowButton"
+      onClick={() => backFunction()}
+    >
       <img
         src="/backArrow.svg"
         alt="Botão com iamgem de seta para a esquerda"

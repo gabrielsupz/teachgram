@@ -18,4 +18,14 @@ export const labelStyled = styled.label`
     border-bottom: 1px solid #e6e6e6;
     padding-bottom: 3px;
   }
+
+  @media (min-width: 750px) {
+    font-size: 20px;
+    gap: 15px;
+
+    input {
+      font-size: 20px;
+      width: 300px;
+    }
+  }
 `

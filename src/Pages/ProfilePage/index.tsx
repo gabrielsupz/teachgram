@@ -8,10 +8,6 @@ export function ProfilePage() {
   const { configSection, setConfigSection } = useConfigSection()
   const isFriends = false
 
-  const handleBackArrobutton = () => {
-    console.log('Clicou, foda! :)')
-  }
-
   const handleConfigButton = () => {
     setConfigSection(true)
   }
@@ -22,7 +18,9 @@ export function ProfilePage() {
     return (
       <S.profilePageStyled>
         <S.headerProfilePageStyle>
-          <BackArrowButton backFunction={handleBackArrobutton} />
+          <BackArrowButton
+            backFunction={() => console.log('Essa é pra sair do perfil ')}
+          />
           <S.threeDotsButton onClick={() => handleConfigButton()}>
             <svg
               width="5"
