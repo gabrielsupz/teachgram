@@ -13,6 +13,7 @@ ${reset}
   --grey-color:  #A09F9F;
  --navigate-text-color: #8E8E8E;
  --rotate-animation: rotate 2s infinite linear;
+--friend-pages-color: #C4C4C4;
 
  font-family: 'Inter', sans-serif;
 

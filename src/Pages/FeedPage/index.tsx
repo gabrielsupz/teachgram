@@ -3,6 +3,8 @@ import { Aside } from '../../Components/Aside'
 import { FeedPost } from '../../Components/FeedPost'
 import { MobileNav } from '../../Components/MobileNav'
 import * as S from './style'
+import { FriendsList } from '../../Components/FriendsList'
+import { ConfigSection } from '../../Components/ConfigSection'
 
 export function FeedPage() {
   useEffect(() => {
@@ -58,6 +60,8 @@ export function FeedPage() {
           />
         </svg>
       </a>
+
+      <FriendsList />
     </S.feedPageStyled>
   )
 }

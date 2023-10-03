@@ -5,23 +5,25 @@ interface friendsListProvider {
 }
 
 interface friendsListContextType {
-  friendsList: boolean
-  setFriendsList: React.Dispatch<React.SetStateAction<boolean>>
+  friendsListIsActive: boolean
+  setFriendsListIsActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 const friendsListContext = createContext<friendsListContextType>(
   {} as friendsListContextType
 )
 
 export const FriendsListProvider = ({ children }: friendsListProvider) => {
-  const [friendsList, setFriendsList] = useState<boolean>(false)
+  const [friendsListIsActive, setFriendsListIsActive] = useState<boolean>(false)
   return (
-    <friendsListContext.Provider value={{ friendsList, setFriendsList }}>
+    <friendsListContext.Provider
+      value={{ friendsListIsActive, setFriendsListIsActive }}
+    >
       {children}
     </friendsListContext.Provider>
   )
 }
 
-export const usefriendsList = () => {
+export const useFriendsList = () => {
   const context = useContext(friendsListContext)
   return context
 }

@@ -3,9 +3,11 @@ import { NavigateButton } from '../NavigateButton'
 import { HeaderLogo } from '../HeaderLogo'
 import * as S from './style'
 import { useConfigSection } from '../../Contexts/ConfigSectionContext'
+import { useFriendsList } from '../../Contexts/FriendsListContext'
 
 export function Aside() {
   const { setConfigSection } = useConfigSection()
+  const { setFriendsListIsActive } = useFriendsList()
   const handleBackArrowButton = () => {
     console.log('Clicou Aqui!')
   }
@@ -36,6 +38,7 @@ export function Aside() {
           text="Feed"
         />
         <NavigateButton
+          onClickFunction={() => setFriendsListIsActive(true)}
           children={
             <>
               <svg

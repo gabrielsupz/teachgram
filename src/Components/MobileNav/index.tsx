@@ -1,18 +1,22 @@
+import { useConfigSection } from '../../Contexts/ConfigSectionContext'
+import { useFriendsList } from '../../Contexts/FriendsListContext'
 import * as S from './style'
 
 export function MobileNav() {
+  const { setConfigSection } = useConfigSection()
+  const { setFriendsListIsActive } = useFriendsList()
   return (
     <S.mobileNavStyled>
       <button>
         <img src="/mobileNavHome.svg" alt="" />
       </button>
-      <button>
+      <button onClick={() => setFriendsListIsActive(true)}>
         <img src="/mobileNavFriends.svg" alt="" />
       </button>
       <button>
         <img src="/mobileNavCreate.svg" alt="" />
       </button>
-      <button>
+      <button onClick={() => setConfigSection(true)}>
         <img src="/mobileNavConfig.svg" alt="" />
       </button>
       <button>
