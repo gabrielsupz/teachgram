@@ -4,10 +4,14 @@ import { HeaderLogo } from '../HeaderLogo'
 import * as S from './style'
 import { useConfigSection } from '../../Contexts/ConfigSectionContext'
 import { useFriendsList } from '../../Contexts/FriendsListContext'
+import { useNavigate } from 'react-router-dom'
+import { useCreatePostModal } from '../../Contexts/CreatePostContext'
 
 export function Aside() {
   const { setConfigSection } = useConfigSection()
   const { setFriendsListIsActive } = useFriendsList()
+  const { setCreatePostModalIsActive } = useCreatePostModal()
+  const navigate = useNavigate()
   const handleBackArrowButton = () => {
     console.log('Clicou Aqui!')
   }
@@ -36,6 +40,7 @@ export function Aside() {
             </>
           }
           text="Feed"
+          onClickFunction={() => navigate('/feed')}
         />
         <NavigateButton
           onClickFunction={() => setFriendsListIsActive(true)}
@@ -65,10 +70,14 @@ export function Aside() {
               alt="Imagem do perfil"
             />
           }
+          onClickFunction={() => navigate('/profile')}
           text="Perfil"
         />
         <NavigateButton
-          onClickFunction={() => setConfigSection(true)}
+          onClickFunction={() => {
+            navigate('/profile')
+            setConfigSection(true)
+          }}
           children={
             <>
               <svg
@@ -123,6 +132,7 @@ export function Aside() {
             </>
           }
           text="Criar"
+          onClickFunction={() => setCreatePostModalIsActive(true)}
         />
       </S.navigateAsideButtonsStyled>
     </S.asideStyled>

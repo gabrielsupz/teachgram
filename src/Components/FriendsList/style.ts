@@ -1,57 +1,17 @@
-import styled, { css, keyframes } from 'styled-components'
+import styled from 'styled-components'
+import { modalBaseStyle } from '../Styles/baseStyles'
 
-interface friendsListProps {
-  active: boolean
-}
-const slideIn = keyframes`
-  0% {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0);
-    opacity: 1;
-  }
-`
-
-export const containingFriendsListStyled = styled.div<friendsListProps>`
-  ${({ active }) =>
-    active
-      ? css`
-          display: flex;
-        `
-      : css`
-          display: none;
-        `}
-
-  position: fixed;
-
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
-  background-color: white;
-  justify-content: center;
-  z-index: 2;
-  top: 0;
-  align-self: center;
-  animation-duration: 0.6s;
-  animation-timing-function: ease-in-out;
-  animation-fill-mode: forwards;
-  animation-name: ${slideIn};
+export const containingFriendsListStyled = styled(modalBaseStyle)`
   .box {
-    height: max-content;
-    background-color: white;
-
     padding: 42px 36px;
   }
+
   h2 {
-    font-size: 20px;
-    color: var(--text-color);
-    font-weight: 600;
     border-bottom: 2px solid #cecece;
     padding-bottom: 9px;
     margin-bottom: 36px;
   }
+
   header {
     display: flex;
     width: 100%;
@@ -76,10 +36,6 @@ export const containingFriendsListStyled = styled.div<friendsListProps>`
       cursor: pointer;
       transition: all 0.3s;
     }
-    .closeButton:hover {
-      transition: all 0.3s;
-      scale: 1.1;
-    }
   }
 
   @media (min-width: 750px) {
@@ -100,6 +56,9 @@ export const containingFriendsListStyled = styled.div<friendsListProps>`
 
     header .closeButton {
       display: flex;
+    }
+    #backArrowButton {
+      display: none;
     }
   }
 `

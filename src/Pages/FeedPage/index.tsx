@@ -5,6 +5,7 @@ import { MobileNav } from '../../Components/MobileNav'
 import * as S from './style'
 import { FriendsList } from '../../Components/FriendsList'
 import { ConfigSection } from '../../Components/ConfigSection'
+import { CreatePostModal } from '../../Components/CreatePostModal'
 
 export function FeedPage() {
   useEffect(() => {
@@ -60,7 +61,7 @@ export function FeedPage() {
           />
         </svg>
       </a>
-
+      <CreatePostModal />
       <FriendsList />
     </S.feedPageStyled>
   )

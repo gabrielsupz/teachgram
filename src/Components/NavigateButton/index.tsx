@@ -4,11 +4,13 @@ interface NavigateButtonProps {
   text: string
   children: React.ReactNode
   onClickFunction?: () => void
+  link?: string
 }
 export function NavigateButton({
   text,
   children,
-  onClickFunction
+  onClickFunction,
+  link
 }: NavigateButtonProps) {
   return (
     <S.navigateButton onClick={onClickFunction}>
@@ -16,7 +18,7 @@ export function NavigateButton({
       <span></span>
       <span></span>
       <span></span>
-      {children} {text}
+      {children} <a href={link}>{text}</a>
     </S.navigateButton>
   )
 }

@@ -1,4 +1,5 @@
 import { ConfigSectionProvider } from './Contexts/ConfigSectionContext'
+import { CreatePostModalProvider } from './Contexts/CreatePostContext'
 import { FriendsListProvider } from './Contexts/FriendsListContext'
 import { FeedPage } from './Pages/FeedPage'
 import { LoginPage } from './Pages/LoginPage'
@@ -11,16 +12,18 @@ function App() {
     <>
       <GlobalStyleAndReset />
       <FriendsListProvider>
-        <ConfigSectionProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/feed" element={<FeedPage />} />
-            </Routes>
-          </BrowserRouter>
-        </ConfigSectionProvider>
+        <CreatePostModalProvider>
+          <ConfigSectionProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/feed" element={<FeedPage />} />
+              </Routes>
+            </BrowserRouter>
+          </ConfigSectionProvider>
+        </CreatePostModalProvider>
       </FriendsListProvider>
     </>
   )

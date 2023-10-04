@@ -3,6 +3,8 @@ import { BackArrowButton } from '../../Components/BackArrowButton'
 import { Aside } from '../../Components/Aside'
 import { useConfigSection } from '../../Contexts/ConfigSectionContext'
 import { ConfigSection } from '../../Components/ConfigSection'
+import { CreatePostModal } from '../../Components/CreatePostModal'
+import { FriendsList } from '../../Components/FriendsList'
 
 export function ProfilePage() {
   const { configSection, setConfigSection } = useConfigSection()
@@ -136,6 +138,8 @@ export function ProfilePage() {
             />
           </S.imgBoxStyled>
         </main>
+        <CreatePostModal />
+        <FriendsList />
       </S.profilePageStyled>
     )
 }
