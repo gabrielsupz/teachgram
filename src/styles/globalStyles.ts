@@ -27,7 +27,9 @@ ${reset}
     }
   }
 }
-
+input{
+  outline: none;
+}
 
 
 
