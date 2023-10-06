@@ -1,14 +1,61 @@
 import * as S from './style'
 import { HeaderLogo } from '../../Components/HeaderLogo'
-import { useState } from 'react'
+import { useState, FormEvent } from 'react'
 import { BackArrowButton } from '../../Components/BackArrowButton'
+import {
+  RegisterUserProps,
+  RegisterUser
+} from '../../services/UserAndPost.service'
 
 export function RegisterPage() {
-  const [profilePhotoSection, setProfilePhotoSection] = useState<boolean>(true)
-  const handleSubmitRegisterFormButton = () => {
-    if (profilePhotoSection) {
-      setProfilePhotoSection(false)
-    } else setProfilePhotoSection(true)
+  const [profilePhotoSection, setProfilePhotoSection] = useState<boolean>(false)
+  const [userData, setUserData] = useState<RegisterUserProps>(
+    {} as RegisterUserProps
+  )
+  const handleNextButton = () => {
+    const name =
+      (document.getElementById('name') as HTMLInputElement)?.value || ''
+    const userName =
+      (document.getElementById('userName') as HTMLInputElement)?.value || ''
+    const email =
+      (document.getElementById('email') as HTMLInputElement)?.value || ''
+    const description =
+      (document.getElementById('description') as HTMLInputElement)?.value || ''
+    const phone =
+      (document.getElementById('phone') as HTMLInputElement)?.value || ''
+    const password =
+      (document.getElementById('password') as HTMLInputElement)?.value || ''
+
+    const inputsUserData: RegisterUserProps = {
+      name,
+      userName,
+      email,
+      description,
+      phone,
+      password,
+      profileLink: ''
+    }
+    setUserData(inputsUserData)
+    console.log(userData)
+    setProfilePhotoSection(true)
+  }
+  const handleSaveButton = async () => {
+    const profileLink =
+      (document.getElementById('profileLink') as HTMLInputElement)?.value || ''
+
+    try {
+      await RegisterUser({
+        email: userData.email,
+        name: userData.name,
+        password: userData.password,
+        phone: userData.phone,
+        description: userData.description,
+        userName: userData.userName,
+        profileLink: profileLink
+      })
+    } catch (error) {
+      console.error(error)
+    }
   }
   const handleBackArrowButton = () => {
     profilePhotoSection
@@ -20,29 +67,61 @@ export function RegisterPage() {
     <S.boxRegisterPageStyled>
       <S.registerPageStyled>
         <HeaderLogo />
-        {profilePhotoSection ? (
+        {!profilePhotoSection ? (
           <>
             {' '}
             <S.formStyled action="">
               <h1>Crie sua conta</h1>
               <div>
                 <S.labelAndInputsStyled htmlFor="">
-                  Nome <input type="text" placeholder="Digite seu nome" />
+                  Nome{' '}
+                  <input
+                    id="name"
+                    required
+                    type="text"
+                    placeholder="Digite seu nome"
+                  />
                 </S.labelAndInputsStyled>
               </div>
-              <S.labelAndInputsStyled htmlFor="">
-                E-mail <input type="text" placeholder="Digite seu E-mail" />
-              </S.labelAndInputsStyled>
+              <div>
+                <S.labelAndInputsStyled htmlFor="">
+                  Username{' '}
+                  <input
+                    id="userName"
+                    required
+                    type="text"
+                    placeholder="@ seu_username"
+                  />
+                </S.labelAndInputsStyled>
+              </div>
+              <div>
+                <S.labelAndInputsStyled htmlFor="">
+                  E-mail{' '}
+                  <input
+                    id="email"
+                    required
+                    type="text"
+                    placeholder="Digite seu E-mail"
+                  />
+                </S.labelAndInputsStyled>
+              </div>
+
               <div>
                 <S.labelAndInputsStyled htmlFor="">
                   Descrição{' '}
-                  <input type="text" placeholder="Faça uma descrição" />
+                  <input
+                    id="description"
+                    required
+                    type="text"
+                    placeholder="Faça uma descrição"
+                  />
                 </S.labelAndInputsStyled>
               </div>
               <div>
                 <S.labelAndInputsStyled htmlFor="">
                   Celular{' '}
                   <input
+                    id="phone"
                     type="text"
                     placeholder="Digite se número de celular"
                   />
@@ -50,18 +129,24 @@ export function RegisterPage() {
               </div>
               <S.alertDivStyled>
                 <S.labelAndInputsStyled htmlFor="">
-                  Senha <input type="text" placeholder="Digite sua senha" />
+                  Senha{' '}
+                  <input
+                    id="password"
+                    required
+                    type="password"
+                    placeholder="Digite sua senha"
+                  />
                 </S.labelAndInputsStyled>
                 <h5 className="active">
                   {' '}
-                  <p className="ball" /> Campo não prenchido
+                  <p className="ball" /> Campo não preenchido
                 </h5>
               </S.alertDivStyled>
 
               <button
-                onClick={() => handleSubmitRegisterFormButton()}
+                onClick={() => handleNextButton()}
                 className="submit"
-                type="submit"
+                type="button"
               >
                 Próximo
               </button>
@@ -78,11 +163,17 @@ export function RegisterPage() {
               <h1>Insira o link da sua foto de perfil </h1>
               <div>
                 <S.labelAndInputsStyled htmlFor="">
-                  Link <input type="text" placeholder="Insira seu link" />
+                  Link{' '}
+                  <input
+                    id="profileLink"
+                    required
+                    type="text"
+                    placeholder="Insira seu link"
+                  />
                 </S.labelAndInputsStyled>
               </div>
               <button
-                onClick={() => handleSubmitRegisterFormButton()}
+                onClick={() => handleSaveButton()}
                 className="submit"
                 type="submit"
               >

@@ -1,8 +1,10 @@
 import { HeaderLogo } from '../../Components/HeaderLogo'
 import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
+import { useNavigate } from 'react-router-dom'
 import * as S from './style'
 export function LoginPage() {
+  const navigate = useNavigate()
   return (
     <S.boxLoginPageStyled>
       <S.loginPage>
@@ -35,7 +37,7 @@ export function LoginPage() {
         </S.formStyled>
         <h4>
           {' '}
-          Não possui uma conta? <a href="">Cadastre-se</a>
+          Não possui uma conta? <a href="/register">Cadastre-se</a>
         </h4>
 
         <S.enterWithStyled>
