@@ -83,6 +83,10 @@ export const createPostModalStyled = styled(modalBaseStyle)`
     display: none;
   }
 
+  header.desktopIncrement {
+    display: none;
+  }
+
   @media (min-width: 750px) {
     .box {
       border-radius: 0;
@@ -98,7 +102,8 @@ export const createPostModalStyled = styled(modalBaseStyle)`
       div.modalBox {
         padding: 44px 54px;
         width: 528px;
-        height: 229px;
+        min-height: 229px;
+        height: max-content;
 
         border-radius: 34px;
 
@@ -110,12 +115,17 @@ export const createPostModalStyled = styled(modalBaseStyle)`
         .alwaysVisible {
           display: flex;
         }
+
+        img {
+          align-self: center;
+          max-width: 200px;
+        }
       }
       header.desktopIncrement {
         padding: 0;
         display: flex;
         position: relative;
-
+        margin-bottom: 20px;
         button.close {
           position: absolute;
           left: -25px;

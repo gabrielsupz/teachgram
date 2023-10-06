@@ -5,7 +5,8 @@ import * as S from './style'
 import { BackArrowButton } from '../BackArrowButton'
 
 export function CreatePostModal() {
-  const { createPostModalIsActive } = useCreatePostModal()
+  const { createPostModalIsActive, setCreatePostModalIsActive } =
+    useCreatePostModal()
   const [inSecondStage, setInSecondStage] = useState(false)
   const [inputValue, setInputValue] = useState<string>('')
   const [captionValue, setCaptionValue] = useState<string>('')
@@ -46,12 +47,32 @@ export function CreatePostModal() {
         </header>
         <div className="modalBox">
           <header className="desktopIncrement">
-            <button className="close" onClick={() => setInSecondStage(false)}>
-              {' '}
-              <img src="/close.svg" alt="Imagem do botão para fechar modal" />
-            </button>
+            {!inSecondStage ? (
+              <button
+                className="close"
+                onClick={() => setCreatePostModalIsActive(false)}
+              >
+                {' '}
+                <img src="/close.svg" alt="Imagem do botão para fechar modal" />
+              </button>
+            ) : (
+              <button className="close" onClick={() => setInSecondStage(false)}>
+                {' '}
+                <img
+                  src="/backArrow.svg"
+                  alt="Seta para retornar a seção anterior"
+                />
+              </button>
+            )}
+
             <h2>Criar nova publicação</h2>
-            <button onClick={() => setInSecondStage(true)}>Avançar</button>
+            {!inSecondStage ? (
+              <button onClick={() => setInSecondStage(true)}>Avançar</button>
+            ) : (
+              <button onClick={() => setInSecondStage(true)}>
+                Compartilhar
+              </button>
+            )}
           </header>
           {!inSecondStage ? (
             <>
