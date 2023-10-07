@@ -3,6 +3,7 @@ import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
 import { useNavigate } from 'react-router-dom'
 import * as S from './style'
+import { Loading } from '../../Components/Loading'
 export function LoginPage() {
   const navigate = useNavigate()
   return (
@@ -58,6 +59,7 @@ export function LoginPage() {
         src="/loginAndRegisterImage.svg"
         alt=""
       />
+      <Loading />
     </S.boxLoginPageStyled>
   )
 }

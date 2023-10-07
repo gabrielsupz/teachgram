@@ -4,12 +4,15 @@ export const feedPageStyled = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   margin: auto;
-  width: 300px;
+  /* width: 300px; */
   #logo {
     margin: 38px 0 38px 0;
     width: 187px;
+  }
+  * {
+    align-self: center;
   }
 
   @media (min-width: 750px) {

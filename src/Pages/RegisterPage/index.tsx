@@ -6,6 +6,7 @@ import {
   RegisterUserProps,
   RegisterUser
 } from '../../services/UserAndPost.service'
+import { Loading } from '../../Components/Loading'
 
 export function RegisterPage() {
   const [profilePhotoSection, setProfilePhotoSection] = useState<boolean>(false)
@@ -188,6 +189,7 @@ export function RegisterPage() {
         src="/loginAndRegisterImage.svg"
         alt="Imagem de mulheres tirando uma self e sorrindo"
       />
+      <Loading />
     </S.boxRegisterPageStyled>
   )
 }
