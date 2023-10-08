@@ -32,6 +32,9 @@ export const feedPageStyled = styled.div`
     display: none;
   }
   @media (min-width: 750px) {
+    #Aside {
+      align-self: flex-start;
+    }
     #backArrowButton {
       display: none;
     }
@@ -59,6 +62,9 @@ export const feedPageStyled = styled.div`
     aside {
       margin-left: 60px;
       position: absolute;
+    }
+    #rectangleBox {
+      align-self: flex-start;
     }
     #imgRectangle {
       min-height: 100vh;

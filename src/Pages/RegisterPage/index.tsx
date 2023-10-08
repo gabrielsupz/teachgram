@@ -1,18 +1,23 @@
 import * as S from './style'
 import { HeaderLogo } from '../../Components/HeaderLogo'
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
 import { BackArrowButton } from '../../Components/BackArrowButton'
 import {
   RegisterUserProps,
   RegisterUser
 } from '../../services/UserAndPost.service'
 import { Loading } from '../../Components/Loading'
+import { useLoading } from '../../Contexts/LoadingContext'
+import { useNavigate } from 'react-router-dom'
 
 export function RegisterPage() {
+  const { setLoading } = useLoading()
+  const navigate = useNavigate()
   const [profilePhotoSection, setProfilePhotoSection] = useState<boolean>(false)
   const [userData, setUserData] = useState<RegisterUserProps>(
     {} as RegisterUserProps
   )
+
   const handleNextButton = () => {
     const name =
       (document.getElementById('name') as HTMLInputElement)?.value || ''
@@ -26,6 +31,11 @@ export function RegisterPage() {
       (document.getElementById('phone') as HTMLInputElement)?.value || ''
     const password =
       (document.getElementById('password') as HTMLInputElement)?.value || ''
+
+    if (!name || !userName || !email || !description || !phone || !password) {
+      alert('Por favor, preencha todos os campos obrigatórios')
+      return
+    }
 
     const inputsUserData: RegisterUserProps = {
       name,
@@ -43,7 +53,7 @@ export function RegisterPage() {
   const handleSaveButton = async () => {
     const profileLink =
       (document.getElementById('profileLink') as HTMLInputElement)?.value || ''
-
+    setLoading(true)
     try {
       await RegisterUser({
         email: userData.email,
@@ -53,9 +63,13 @@ export function RegisterPage() {
         description: userData.description,
         userName: userData.userName,
         profileLink: profileLink
+      }).then(() => {
+        setLoading(false)
       })
     } catch (error) {
       console.error(error)
+    } finally {
+      setLoading(false)
     }
   }
   const handleBackArrowButton = () => {
@@ -123,7 +137,8 @@ export function RegisterPage() {
                   Celular{' '}
                   <input
                     id="phone"
-                    type="text"
+                    type="number"
+                    minLength={8}
                     placeholder="Digite se número de celular"
                   />
                 </S.labelAndInputsStyled>

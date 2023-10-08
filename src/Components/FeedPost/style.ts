@@ -57,6 +57,10 @@ export const feedPostStyled = styled.div`
     width: 350px;
 
     div:first-child {
+      width: 100%;
+      div {
+        align-self: flex-start;
+      }
       img {
         width: 50px;
         height: 50px;

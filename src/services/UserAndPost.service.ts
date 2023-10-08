@@ -1,3 +1,4 @@
+import { useAuthContext } from '../Contexts/AuthContext'
 import { Api } from './api'
 
 export interface RegisterUserProps {
@@ -8,6 +9,11 @@ export interface RegisterUserProps {
   email: string
   profileLink: string
   description: string
+}
+
+export interface LoginUserProps {
+  email: string
+  password: string
 }
 
 export async function RegisterUser({
@@ -31,13 +37,27 @@ export async function RegisterUser({
     })
     console.log(`Usuário ${name} registrado`)
   } catch (err: any) {
-    interface ErrorProps {
-      campo: string
-      mensagem: string
-    }
-    const errors = err.response.data as ErrorProps[]
-    errors.forEach(({ campo, mensagem }: ErrorProps) =>
-      console.log(`${campo}: ${mensagem}`)
-    )
+    console.log(err)
+  }
+}
+interface LoginDataResponseType {
+  token: string
+}
+
+export async function LoginUser({ email, password }: LoginUserProps) {
+  try {
+    const response = await Api.post('/login', {
+      email: email,
+      password: password
+    })
+
+    const responseData: LoginDataResponseType = response.data
+    localStorage.setItem('authToken', responseData.token)
+
+    return responseData.token
+  } catch (err) {
+    console.log(err)
+
+    return null
   }
 }

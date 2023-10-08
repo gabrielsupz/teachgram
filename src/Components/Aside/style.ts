@@ -4,6 +4,7 @@ export const asideStyled = styled.aside`
   display: none;
 
   @media (min-width: 750px) {
+    align-self: flex-start;
     display: flex;
   }
   @media (min-width: 1300px) {
@@ -23,6 +24,10 @@ export const navigateAsideButtonsStyled = styled.nav`
   display: flex;
   flex-direction: column;
   gap: 37px;
+
+  button {
+    width: 100%;
+  }
 `
 export const arrowAndHeaderStyle = styled.div`
   display: flex;
