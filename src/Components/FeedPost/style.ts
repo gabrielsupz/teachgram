@@ -29,6 +29,8 @@ export const feedPostStyled = styled.div`
     gap: 16px;
     align-items: center;
     position: relative;
+    width: 100%;
+
     img {
       width: 40px;
       height: 40px;
@@ -58,9 +60,7 @@ export const feedPostStyled = styled.div`
 
     div:first-child {
       width: 100%;
-      div {
-        align-self: flex-start;
-      }
+
       img {
         width: 50px;
         height: 50px;

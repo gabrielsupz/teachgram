@@ -61,3 +61,47 @@ export async function LoginUser({ email, password }: LoginUserProps) {
     return null
   }
 }
+
+export async function DeleteUser(token: string) {
+  try {
+    await Api.delete('/usuarios/delete', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(() => {
+      localStorage.removeItem('authToken')
+    })
+
+    console.log('User deletado')
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+export interface UserPropsType {
+  id: number
+  userName: string
+  name: string
+  phone: string
+  email: string
+  profileLink: string
+  description: string
+}
+
+export async function GetFriends(token: string, page: number) {
+  try {
+    const response = await Api.get(`/usuarios/friends?page=${page}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+
+    return response.data
+
+    // .content as UserPropsType[]
+  } catch (err) {
+    console.log(err)
+
+    return null
+  }
+}

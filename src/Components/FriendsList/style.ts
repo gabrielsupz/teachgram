@@ -81,15 +81,17 @@ export const friendsListPagesStyled = styled.div`
   margin-top: 52px;
   margin-bottom: 60px;
   gap: 14px;
-  cursor: pointer;
+
   button {
     border: none;
     background-color: transparent;
   }
 
   div {
+    color: var(--friend-pages-color);
+    cursor: default;
     button {
-      color: var(--friend-pages-color);
+      cursor: pointer;
     }
 
     display: flex;

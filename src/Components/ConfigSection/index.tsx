@@ -1,14 +1,19 @@
 import * as S from './style'
 import { useConfigSection } from '../../Contexts/ConfigSectionContext'
 import { BackArrowButton } from '../BackArrowButton'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ConfigInput } from '../ConfigInput'
+import { useAuthContext } from '../../Contexts/AuthContext'
+import { DeleteUser } from '../../services/UserAndPost.service'
+import { useNavigate } from 'react-router-dom'
 
 interface InConfigType {
   section: 'nav' | 'updateProfile' | 'configAccount'
 }
 export function ConfigSection() {
   const { setConfigSection } = useConfigSection()
+  const { authToken, setAuthToken } = useAuthContext()
+  const navigate = useNavigate()
   const [inConfig, setInConfig] = useState<InConfigType>({
     section: 'nav'
   } as InConfigType)
@@ -24,6 +29,14 @@ export function ConfigSection() {
   const addAndRemoveActiveInDeleteAccountDiv = () => {
     const deleteAccountDiv = document.getElementById('deleteAccountDiv')
     if (deleteAccountDiv) deleteAccountDiv.classList.toggle('active')
+  }
+
+  const handelDeleteAccountButton = async () => {
+    await DeleteUser(authToken)
+      .then(() => {
+        setAuthToken('')
+      })
+      .then(() => navigate('/'))
   }
 
   return (
@@ -127,7 +140,12 @@ export function ConfigSection() {
             >
               Cancelar
             </button>
-            <button className="confirm">Confirmar</button>
+            <button
+              onClick={() => handelDeleteAccountButton()}
+              className="confirm"
+            >
+              Confirmar
+            </button>
           </div>
         </div>
       </S.deleteAccountDiv>

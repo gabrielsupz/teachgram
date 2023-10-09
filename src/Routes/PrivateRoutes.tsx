@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAuthContext } from '../Contexts/AuthContext'
 import { Navigate } from 'react-router-dom'
-
+import { useEffect } from 'react'
 interface Props {
   children: React.ReactNode
 }

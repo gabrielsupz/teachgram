@@ -1,10 +1,119 @@
 import { useFriendsList } from '../../Contexts/FriendsListContext'
 import { BackArrowButton } from '../BackArrowButton'
 import { FriendItem } from '../FriendItem'
+import { useEffect, useState } from 'react'
 import * as S from './style'
+import { GetFriends, UserPropsType } from '../../services/UserAndPost.service'
+import { useAuthContext } from '../../Contexts/AuthContext'
 
 export function FriendsList() {
   const { friendsListIsActive, setFriendsListIsActive } = useFriendsList()
+  const { authToken } = useAuthContext()
+  const [friends, setFriends] = useState<UserPropsType[] | null>([
+    {} as UserPropsType
+  ])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [totalPages, setTotalPages] = useState(0)
+  const [pageDivActive, setPageDivActive] = useState(1)
+
+  useEffect(() => {
+    GetFriends(authToken, currentPage).then(e => {
+      setFriends(e.content)
+      setTotalPages(e.totalPages - 1)
+      console.log(e)
+      alterDivPage()
+    })
+  }, [friendsListIsActive, currentPage])
+
+  const alterDivPage = () => {
+    const div1 = document.getElementById(`pageDiv1`)
+    const div2 = document.getElementById(`pageDiv2`)
+    const div3 = document.getElementById(`pageDiv3`)
+    const div4 = document.getElementById(`pageDiv4`)
+    div1?.classList.remove('active')
+    div2?.classList.remove('active')
+    div3?.classList.remove('active')
+    div4?.classList.remove('active')
+
+    if (div1 && div2 && div3 && div4) {
+      if (pageDivActive === 1) {
+        if (currentPage === 3) {
+          setPageDivActive(3)
+        } else {
+          div1.innerHTML = currentPage.toString()
+          div2.innerHTML = (currentPage + 1).toString()
+          div3.innerHTML = (currentPage + 2).toString()
+          div4.innerHTML = (currentPage + 3).toString()
+        }
+      }
+
+      if (pageDivActive === 2) {
+        div1.innerHTML = (currentPage - 1).toString()
+        div2.innerHTML = currentPage.toString()
+        div3.innerHTML = (currentPage + 1).toString()
+        div4.innerHTML = (currentPage + 2).toString()
+      }
+      if (pageDivActive === 3) {
+        div1.innerHTML = (currentPage - 2).toString()
+        div2.innerHTML = (currentPage - 1).toString()
+        div3.innerHTML = currentPage.toString()
+        div4.innerHTML = (currentPage + 1).toString()
+      }
+      if (pageDivActive === 4) {
+        div1.innerHTML = (currentPage - 3).toString()
+        div2.innerHTML = (currentPage - 2).toString()
+        div3.innerHTML = (currentPage - 1).toString()
+        div4.innerHTML = currentPage.toString()
+      }
+
+      const div = document.getElementById(`pageDiv${pageDivActive}`)
+      div?.classList.add('active')
+
+      if (currentPage === totalPages) {
+        setPageDivActive(4)
+        div1?.classList.remove('active')
+        div2?.classList.remove('active')
+        div3?.classList.remove('active')
+        div4?.classList.remove('active')
+
+        div1.innerHTML = (currentPage - 3).toString()
+        div2.innerHTML = (currentPage - 2).toString()
+        div3.innerHTML = (currentPage - 1).toString()
+        div4.innerHTML = currentPage.toString()
+
+        div4.classList.add('active')
+      }
+    }
+
+    console.log(pageDivActive)
+  }
+
+  const handlePreviusPageButton = () => {
+    if (currentPage === totalPages) {
+      setCurrentPage(1)
+    } else {
+      setCurrentPage(currentPage + 1)
+    }
+
+    if (pageDivActive === 4) {
+      setPageDivActive(1)
+    } else {
+      setPageDivActive(pageDivActive + 1)
+    }
+  }
+  const handleNextPageButton = () => {
+    if (currentPage === 1) {
+      setCurrentPage(totalPages)
+    } else {
+      setCurrentPage(currentPage - 1)
+    }
+    if (pageDivActive === 1) {
+      setPageDivActive(4)
+    } else {
+      setPageDivActive(pageDivActive - 1)
+    }
+  }
+
   return (
     <S.containingFriendsListStyled active={friendsListIsActive}>
       <div className="box">
@@ -20,14 +129,16 @@ export function FriendsList() {
         </header>
         <h2>Amigos</h2>
         <S.friendsListStyled>
-          <FriendItem />
-          <FriendItem />
-          <FriendItem />
-          <FriendItem />
-
+          {friends ? (
+            friends.map((friend: UserPropsType) => (
+              <FriendItem key={friend.id} {...friend} />
+            ))
+          ) : (
+            <h2>Sem amigos</h2>
+          )}
           <S.friendsListPagesStyled>
             <div>
-              <button>
+              <button onClick={() => handleNextPageButton()}>
                 <svg
                   width="13"
                   height="12"
@@ -50,18 +161,14 @@ export function FriendsList() {
                 </svg>
               </button>
             </div>
-            <div className="active">1</div>
-            <div>
-              <button>2</button>{' '}
+            <div id="pageDiv1" className="active">
+              1
             </div>
+            <div id="pageDiv2">2</div>
+            <div id="pageDiv3">3</div>
+            <div id="pageDiv4">4</div>
             <div>
-              <button>3</button>{' '}
-            </div>
-            <div>
-              <button>4</button>{' '}
-            </div>
-            <div>
-              <button>
+              <button onClick={() => handlePreviusPageButton()}>
                 <svg
                   width="13"
                   height="12"
