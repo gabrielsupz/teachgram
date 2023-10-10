@@ -2,7 +2,7 @@ import { UserPropsType } from '../../services/UserAndPost.service'
 import * as S from './style'
 export function FriendItem(user: UserPropsType) {
   return (
-    <S.friendItemStyled>
+    <S.friendItemStyled key={user.id}>
       <img src={user.profileLink} />
       <div>
         <h3>{user.userName}</h3>

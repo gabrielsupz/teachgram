@@ -28,6 +28,24 @@ export const feedPageStyled = styled.div`
   #backToTopButton {
     display: none;
   }
+
+  .pageInteract {
+    padding-bottom: 30px;
+    button {
+      border: none;
+      background-color: transparent;
+
+      a {
+        transition: all 0.3s;
+        color: var(--red-color);
+      }
+    }
+
+    button:hover a {
+      color: var(--red-color-hover);
+    }
+  }
+
   @media (min-width: 750px) {
     #Aside {
       align-self: flex-start;

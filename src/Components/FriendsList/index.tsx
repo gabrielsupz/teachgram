@@ -20,7 +20,7 @@ export function FriendsList() {
     GetFriends(authToken, currentPage).then(e => {
       setFriends(e.content)
       setTotalPages(e.totalPages - 1)
-      console.log(e)
+
       alterDivPage()
     })
   }, [friendsListIsActive, currentPage])
@@ -130,9 +130,7 @@ export function FriendsList() {
         <h2>Amigos</h2>
         <S.friendsListStyled>
           {friends ? (
-            friends.map((friend: UserPropsType) => (
-              <FriendItem key={friend.id} {...friend} />
-            ))
+            friends.map((friend: UserPropsType) => <FriendItem {...friend} />)
           ) : (
             <h2>Sem amigos</h2>
           )}

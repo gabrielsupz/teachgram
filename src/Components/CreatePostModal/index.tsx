@@ -1,18 +1,48 @@
 import { useCreatePostModal } from '../../Contexts/CreatePostContext'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import * as S from './style'
 import { BackArrowButton } from '../BackArrowButton'
+import { CreatePost, CreatePostData } from '../../services/UserAndPost.service'
+import { useAuthContext } from '../../Contexts/AuthContext'
 
 export function CreatePostModal() {
+  const { authToken } = useAuthContext()
   const { createPostModalIsActive, setCreatePostModalIsActive } =
     useCreatePostModal()
   const [inSecondStage, setInSecondStage] = useState(false)
   const [inputValue, setInputValue] = useState<string>('')
   const [captionValue, setCaptionValue] = useState<string>('')
 
+  const handleSavePost = () => {
+    if (captionValue !== '') {
+      const post: CreatePostData = {
+        description: captionValue,
+        photoLink: inputValue,
+        postIsPrivate: false,
+        title: captionValue,
+        videoLink: inputValue
+      }
+      CreatePost(authToken, post).then(e => {
+        console.log('Post: ', e)
+        setCreatePostModalIsActive(false)
+        setCaptionValue('')
+        setInputValue('')
+        setInSecondStage(false)
+        alert('Post Publicado')
+      })
+    } else {
+      alert('Preencha o campo de descrição antes de compartilhar')
+    }
+  }
+
   const handleAdvanceButton = () => {
-    setInSecondStage(true)
+    const urlRegex = /^(ftp|http|https):\/\/[^ "]+$/
+    if (inputValue.trim() !== '' && urlRegex.test(inputValue)) {
+      setInSecondStage(true)
+    } else {
+      alert('Informe um link de imagem valido')
+    }
   }
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -67,11 +97,9 @@ export function CreatePostModal() {
 
             <h2>Criar nova publicação</h2>
             {!inSecondStage ? (
-              <button onClick={() => setInSecondStage(true)}>Avançar</button>
+              <button onClick={() => handleAdvanceButton()}>Avançar</button>
             ) : (
-              <button onClick={() => setInSecondStage(true)}>
-                Compartilhar
-              </button>
+              <button onClick={() => handleSavePost()}>Compartilhar</button>
             )}
           </header>
           {!inSecondStage ? (

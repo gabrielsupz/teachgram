@@ -17,11 +17,25 @@ export const feedPostStyled = styled.div`
     margin-bottom: 12px;
   }
 
+  button {
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+    background-color: transparent;
+  }
+
   h4 {
+    transition: all 0.3s;
     margin-top: 5px;
     font-size: 10px;
     font-weight: 400;
     color: var(--navigate-text-color);
+  }
+
+  h4.liked {
+    transition: all 0.3s;
+    font-weight: 600;
+    color: var(--red-color-hover);
   }
 
   div:first-child {
@@ -38,6 +52,7 @@ export const feedPostStyled = styled.div`
     }
 
     svg {
+      transition: all 0.3s;
       position: absolute;
       right: 0;
       top: 0;

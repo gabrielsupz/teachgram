@@ -6,11 +6,60 @@ import { ConfigSection } from '../../Components/ConfigSection'
 import { CreatePostModal } from '../../Components/CreatePostModal'
 import { FriendsList } from '../../Components/FriendsList'
 import { Loading } from '../../Components/Loading'
+import { useState, useEffect } from 'react'
+import {
+  GetAuthUser,
+  GetPostByUserId,
+  GetUser,
+  UserPropsType
+} from '../../services/UserAndPost.service'
+import { useAuthContext } from '../../Contexts/AuthContext'
+import { PostDataType } from '../FeedPage'
+import { useNavigate, useParams } from 'react-router-dom'
 
 export function ProfilePage() {
+  const { authToken } = useAuthContext()
   const { configSection, setConfigSection } = useConfigSection()
-  const isFriends = false
+  const { urlid } = useParams()
 
+  const isFriends = false
+  const [
+    {
+      description,
+
+      id,
+      name,
+      profileLink,
+      userName,
+      friendsCount,
+      postsCount
+    },
+    setUser
+  ] = useState<UserPropsType>({} as UserPropsType)
+  const [posts, setPosts] = useState<PostDataType[]>()
+  const navigate = useNavigate()
+  useEffect(() => {
+    const urlId = urlid ? parseInt(urlid) : undefined
+    if (urlId) {
+      GetUser(authToken, urlId)
+        .then(e => setUser(e))
+        .then(() => getPosts(urlId))
+        .catch(() => navigate('/'))
+    } else {
+      GetAuthUser(authToken)
+        .then(e => setUser(e))
+        .then(() => getPosts(id))
+        .catch(() => navigate('/'))
+    }
+  }, [])
+
+  useEffect(() => {
+    getPosts(id)
+  }, [id])
+
+  const getPosts = async (userId: number) => {
+    GetPostByUserId(authToken, userId).then(e => setPosts(e.content))
+  }
   const handleConfigButton = () => {
     setConfigSection(true)
   }
@@ -50,28 +99,24 @@ export function ProfilePage() {
           <main>
             <S.profileInfoBoxStyle>
               <S.imgProfileSyled
-                src="https://avatars.githubusercontent.com/u/102992996?s=400&u=80dfdee29368bfbd801dd0d3d6f27a84009a10f1&v=4"
-                alt=""
+                src={profileLink}
+                alt="Foto de perfil do usuário"
               />
               <S.nameAndDescriptionDivSyled>
                 <h2>
-                  Gabriel Suptitz{' '}
+                  @{userName}
                   <button onClick={() => handleConfigButton()}>
                     <img src="/configButton.svg" alt="Ícone de engrenagem " />
                   </button>
                 </h2>
-                <h4>Desenvolvedor</h4>
-                <p>
-                  A programação foi o caminho que escolhi, dev foi a profissão
-                  que me fez querer evoluir e o código me deixou feliz com
-                  resultados, por isso abracei a ideia.
-                </p>
+                <h4>{name}</h4>
+                <p>{description}</p>
                 <div>
                   <h5>
-                    <strong>50</strong>Posts
+                    <strong>{postsCount}</strong>Posts
                   </h5>
                   <h5>
-                    <strong>100</strong>Amigos
+                    <strong>{friendsCount}</strong>Amigos
                   </h5>
                   {isFriends ? (
                     <S.addFrienButtonStyle>
@@ -108,42 +153,17 @@ export function ProfilePage() {
               </S.nameAndDescriptionDivSyled>
             </S.profileInfoBoxStyle>
             <S.imgBoxStyled>
-              <img
-                src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png"
-                alt=""
-              />
-              <img
-                src="https://i.pinimg.com/236x/35/cc/35/35cc357473dcc4c3f367c3f6fc12fbef.jpg"
-                alt=""
-              />
-              <img
-                src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png"
-                alt=""
-              />
-              <img
-                src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png"
-                alt=""
-              />
-              <img
-                src="https://i.pinimg.com/236x/35/cc/35/35cc357473dcc4c3f367c3f6fc12fbef.jpg"
-                alt=""
-              />
-              <img
-                src="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-                alt=""
-              />
-              <img
-                src="https://cbissn.ibict.br/images/phocagallery/galeria2/thumbs/phoca_thumb_l_image03_grd.png"
-                alt=""
-              />
-              <img
-                src="https://i.pinimg.com/236x/35/cc/35/35cc357473dcc4c3f367c3f6fc12fbef.jpg"
-                alt=""
-              />
-              <img
-                src="https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg"
-                alt=""
-              />
+              {posts ? (
+                posts.map(e => (
+                  <img
+                    key={e.id}
+                    src={e.photoLink}
+                    alt={`Postagem de ${e.author}`}
+                  ></img>
+                ))
+              ) : (
+                <h3>Sem postagens</h3>
+              )}
             </S.imgBoxStyled>
           </main>
           <CreatePostModal />

@@ -13,7 +13,7 @@ export function Aside() {
   const { setCreatePostModalIsActive } = useCreatePostModal()
   const navigate = useNavigate()
   const handleBackArrowButton = () => {
-    console.log('Clicou Aqui!')
+    navigate('/')
   }
   return (
     <S.asideStyled id="Aside">
