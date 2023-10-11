@@ -15,6 +15,7 @@ import { Navigate } from 'react-router-dom'
 import { FriendsListProvider } from '../Contexts/FriendsListContext'
 import { CreatePostModalProvider } from '../Contexts/CreatePostContext'
 import { ConfigSectionProvider } from '../Contexts/ConfigSectionContext'
+import { UpdatePostDataProvider } from '../Contexts/UpdatePostDataContext'
 
 function PrivateRoutes() {
   const { authToken } = useAuthContext()
@@ -28,9 +29,11 @@ function PrivateRoutes() {
   return (
     <FriendsListProvider>
       <CreatePostModalProvider>
-        <ConfigSectionProvider>
-          <Outlet />
-        </ConfigSectionProvider>
+        <UpdatePostDataProvider>
+          <ConfigSectionProvider>
+            <Outlet />
+          </ConfigSectionProvider>
+        </UpdatePostDataProvider>
       </CreatePostModalProvider>
     </FriendsListProvider>
   )

@@ -22,6 +22,23 @@ export const feedPostStyled = styled.div`
     border: none;
     transition: all 0.3s;
     background-color: transparent;
+    align-self: flex-start;
+
+    svg {
+      transition: all 0.3s;
+    }
+  }
+
+  .imgBox {
+    overflow: hidden;
+  }
+  .feedImgPost {
+    object-fit: contain;
+  }
+
+  button:hover svg {
+    transition: all 0.3s;
+    scale: 1.3;
   }
 
   h4 {

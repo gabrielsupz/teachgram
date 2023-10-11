@@ -1,29 +1,40 @@
+import { useNavigate } from 'react-router-dom'
 import { useConfigSection } from '../../Contexts/ConfigSectionContext'
 import { useFriendsList } from '../../Contexts/FriendsListContext'
 import * as S from './style'
+import { useCreatePostModal } from '../../Contexts/CreatePostContext'
+import { useAuthContext } from '../../Contexts/AuthContext'
 
 export function MobileNav() {
   const { setConfigSection } = useConfigSection()
   const { setFriendsListIsActive } = useFriendsList()
+  const navigate = useNavigate()
+  const { setCreatePostModalIsActive } = useCreatePostModal()
+  const { authUserPhoto } = useAuthContext()
   return (
     <S.mobileNavStyled>
-      <button>
-        <img src="/mobileNavHome.svg" alt="" />
+      <button onClick={() => navigate('/feed#')}>
+        <img src="/mobileNavHome.svg" alt="Imagem do botão ir para feed/home" />
       </button>
       <button onClick={() => setFriendsListIsActive(true)}>
-        <img src="/mobileNavFriends.svg" alt="" />
+        <img
+          src="/mobileNavFriends.svg"
+          alt="Imagem do botão que abre lista de amigos"
+        />
       </button>
-      <button>
+      <button onClick={() => setCreatePostModalIsActive(true)}>
         <img src="/mobileNavCreate.svg" alt="" />
       </button>
-      <button onClick={() => setConfigSection(true)}>
+      <button
+        onClick={() => {
+          navigate('/profile')
+          setConfigSection(true)
+        }}
+      >
         <img src="/mobileNavConfig.svg" alt="" />
       </button>
-      <button>
-        <img
-          src="https://avatars.githubusercontent.com/u/102992996?s=400&u=80dfdee29368bfbd801dd0d3d6f27a84009a10f1&v=4"
-          alt="Foto do perfil"
-        />
+      <button onClick={() => navigate('/profile')}>
+        <img className="profile" src={authUserPhoto} alt="Foto do perfil" />
       </button>
     </S.mobileNavStyled>
   )

@@ -3,19 +3,32 @@ import { useAuthContext } from '../../Contexts/AuthContext'
 import { PostDataType } from '../../Pages/FeedPage'
 import { LikePost, RemoveLikePost } from '../../services/UserAndPost.service'
 import * as S from './style'
+import { useNavigate } from 'react-router-dom'
+import { useCreatePostModal } from '../../Contexts/CreatePostContext'
+import {
+  UpdatePostDataProvider,
+  useUpdatePostData
+} from '../../Contexts/UpdatePostDataContext'
+import { useLoading } from '../../Contexts/LoadingContext'
 
 export function FeedPost({
   author,
   authorPhoto,
-  createdAt,
+
+  updatedAt,
+
   description,
   id,
+  authorId,
   likes,
   photoLink
 }: PostDataType) {
   const [liked, setLiked] = useState(false)
   const [numberLikes, setNumberLikes] = useState(likes)
-  const { authToken } = useAuthContext()
+  const { authToken, authId } = useAuthContext()
+  const navigate = useNavigate()
+  const { setUpdatePostModalIsActive } = useCreatePostModal()
+  const { setUpdatePostData } = useUpdatePostData()
 
   const handelLikeButton = async () => {
     await LikePost(authToken, id).then(() => {
@@ -29,6 +42,21 @@ export function FeedPost({
       setLiked(false)
       setNumberLikes(likes - 1)
     })
+  }
+
+  const handleUpdatePost = () => {
+    const updatePost: PostDataType = {
+      description,
+      id,
+      likes,
+      photoLink,
+      updatedAt,
+      author,
+      authorId,
+      authorPhoto
+    }
+    setUpdatePostData(updatePost)
+    setUpdatePostModalIsActive(true)
   }
 
   function reformulateDate(dateString: string) {
@@ -48,43 +76,55 @@ export function FeedPost({
         <img src={authorPhoto} alt="Foto do perfil" />
 
         <div>
-          <h3>@{author}</h3>
-          <h4>{reformulateDate(createdAt)}</h4>
+          <button onClick={() => navigate(`/profile/${authorId}`)}>
+            <h3>@{author}</h3>
+          </button>
+          <h4>{reformulateDate(updatedAt)}</h4>
         </div>
 
-        <svg
-          width="4"
-          height="13"
-          viewBox="0 0 4 13"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle
-            cx="1.39286"
-            cy="1.39286"
-            r="1.39286"
-            transform="matrix(-1 0 0 1 3.71387 0)"
-            fill="#8E8E8E"
-          />
-          <circle
-            cx="1.39286"
-            cy="1.39286"
-            r="1.39286"
-            transform="matrix(-1 0 0 1 3.71387 5.10706)"
-            fill="#8E8E8E"
-          />
-          <circle
-            cx="1.39286"
-            cy="1.39286"
-            r="1.39286"
-            transform="matrix(-1 0 0 1 3.71387 10.2142)"
-            fill="#8E8E8E"
-          />
-        </svg>
+        {authId === authorId ? (
+          <button onClick={() => handleUpdatePost()}>
+            <svg
+              width="4"
+              height="13"
+              viewBox="0 0 4 13"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle
+                cx="1.39286"
+                cy="1.39286"
+                r="1.39286"
+                transform="matrix(-1 0 0 1 3.71387 0)"
+                fill="#8E8E8E"
+              />
+              <circle
+                cx="1.39286"
+                cy="1.39286"
+                r="1.39286"
+                transform="matrix(-1 0 0 1 3.71387 5.10706)"
+                fill="#8E8E8E"
+              />
+              <circle
+                cx="1.39286"
+                cy="1.39286"
+                r="1.39286"
+                transform="matrix(-1 0 0 1 3.71387 10.2142)"
+                fill="#8E8E8E"
+              />
+            </svg>
+          </button>
+        ) : (
+          <></>
+        )}
       </div>
-      <div>
+      <div className="imgBox">
         <p>{description}</p>
-        <img src={photoLink} alt={`Foto do post do usuário ${author}`} />
+        <img
+          className="feedImgPost"
+          src={photoLink}
+          alt={`Foto do post do usuário ${author}`}
+        />
       </div>
 
       <div>

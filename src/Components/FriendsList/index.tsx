@@ -9,9 +9,7 @@ import { useAuthContext } from '../../Contexts/AuthContext'
 export function FriendsList() {
   const { friendsListIsActive, setFriendsListIsActive } = useFriendsList()
   const { authToken } = useAuthContext()
-  const [friends, setFriends] = useState<UserPropsType[] | null>([
-    {} as UserPropsType
-  ])
+  const [friends, setFriends] = useState<UserPropsType[] | null>()
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(0)
   const [pageDivActive, setPageDivActive] = useState(1)
@@ -84,8 +82,6 @@ export function FriendsList() {
         div4.classList.add('active')
       }
     }
-
-    console.log(pageDivActive)
   }
 
   const handlePreviusPageButton = () => {
@@ -132,7 +128,7 @@ export function FriendsList() {
           {friends ? (
             friends.map((friend: UserPropsType) => <FriendItem {...friend} />)
           ) : (
-            <h2>Sem amigos</h2>
+            <h4>Sem amigos 😕 </h4>
           )}
           <S.friendsListPagesStyled>
             <div>

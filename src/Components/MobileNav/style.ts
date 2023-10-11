@@ -16,6 +16,10 @@ export const mobileNavStyled = styled.nav`
   button {
     border: none;
     background-color: transparent;
+    img.profile {
+      width: 32px;
+      height: 32px;
+    }
   }
   button:last-child {
     img {

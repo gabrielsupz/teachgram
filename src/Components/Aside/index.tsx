@@ -1,20 +1,38 @@
+import * as S from './style'
 import { BackArrowButton } from '../BackArrowButton'
 import { NavigateButton } from '../NavigateButton'
 import { HeaderLogo } from '../HeaderLogo'
-import * as S from './style'
 import { useConfigSection } from '../../Contexts/ConfigSectionContext'
 import { useFriendsList } from '../../Contexts/FriendsListContext'
 import { useNavigate } from 'react-router-dom'
 import { useCreatePostModal } from '../../Contexts/CreatePostContext'
+import { useAuthContext } from '../../Contexts/AuthContext'
+import { useEffect } from 'react'
+import {
+  GetAuthUser,
+  UpdateUserPropsType
+} from '../../services/UserAndPost.service'
+import { useLoading } from '../../Contexts/LoadingContext'
 
 export function Aside() {
+  const { authUserPhoto, authToken, setAuthUserPhoto } = useAuthContext()
   const { setConfigSection } = useConfigSection()
   const { setFriendsListIsActive } = useFriendsList()
   const { setCreatePostModalIsActive } = useCreatePostModal()
   const navigate = useNavigate()
+  const { setLoading } = useLoading()
   const handleBackArrowButton = () => {
     navigate('/')
   }
+  useEffect(() => {
+    setLoading(true)
+    GetAuthUser(authToken).then((e: UpdateUserPropsType) => {
+      if (e.profileLink) {
+        setAuthUserPhoto(e.profileLink)
+      }
+    })
+    setLoading(false)
+  }, [authUserPhoto])
   return (
     <S.asideStyled id="Aside">
       <S.arrowAndHeaderStyle>
@@ -66,7 +84,7 @@ export function Aside() {
           children={
             <img
               className="profile"
-              src="https://avatars.githubusercontent.com/u/102992996?v=4"
+              src={authUserPhoto}
               alt="Imagem do perfil"
             />
           }

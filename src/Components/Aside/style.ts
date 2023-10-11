@@ -2,7 +2,10 @@ import styled from 'styled-components'
 
 export const asideStyled = styled.aside`
   display: none;
-
+  .profile {
+    width: 44px;
+    height: 44px;
+  }
   @media (min-width: 750px) {
     align-self: flex-start;
     display: flex;

@@ -5,6 +5,7 @@ import * as S from './style'
 import { BackArrowButton } from '../BackArrowButton'
 import { CreatePost, CreatePostData } from '../../services/UserAndPost.service'
 import { useAuthContext } from '../../Contexts/AuthContext'
+import { useLoading } from '../../Contexts/LoadingContext'
 
 export function CreatePostModal() {
   const { authToken } = useAuthContext()
@@ -13,8 +14,9 @@ export function CreatePostModal() {
   const [inSecondStage, setInSecondStage] = useState(false)
   const [inputValue, setInputValue] = useState<string>('')
   const [captionValue, setCaptionValue] = useState<string>('')
-
+  const { setLoading } = useLoading()
   const handleSavePost = () => {
+    setLoading(true)
     if (captionValue !== '') {
       const post: CreatePostData = {
         description: captionValue,
@@ -34,6 +36,8 @@ export function CreatePostModal() {
     } else {
       alert('Preencha o campo de descrição antes de compartilhar')
     }
+
+    setLoading(false)
   }
 
   const handleAdvanceButton = () => {
@@ -60,11 +64,13 @@ export function CreatePostModal() {
           {inSecondStage ? (
             <BackArrowButton backFunction={() => setInSecondStage(false)} />
           ) : (
-            <img
-              className="closeButton"
-              src="/close.svg"
-              alt="Imagem do botão fechar"
-            />
+            <button onClick={() => setCreatePostModalIsActive(false)}>
+              <img
+                className="closeButton"
+                src="/close.svg"
+                alt="Imagem do botão fechar"
+              />
+            </button>
           )}
 
           <h2>Nova publicação</h2>
@@ -72,7 +78,7 @@ export function CreatePostModal() {
           {!inSecondStage ? (
             <button onClick={handleAdvanceButton}>Avançar</button>
           ) : (
-            <button>Compartilhar</button>
+            <button onClick={() => handleSavePost()}>Compartilhar</button>
           )}
         </header>
         <div className="modalBox">
@@ -125,7 +131,7 @@ export function CreatePostModal() {
             </>
           ) : (
             <>
-              <img src={inputValue} alt="Imagem da publicação" />
+              <img id="postImage" src={inputValue} alt="Imagem da publicação" />
 
               <input
                 className="alwaysVisible"

@@ -5,9 +5,9 @@ export const createPostModalStyled = styled(modalBaseStyle)`
   .box {
     display: flex;
     align-items: center;
-    background-color: white;
-    flex-direction: column;
 
+    flex-direction: column;
+    background-color: white;
     height: 100%;
     width: 100%;
 

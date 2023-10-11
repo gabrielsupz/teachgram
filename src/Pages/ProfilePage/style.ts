@@ -8,6 +8,7 @@ export const profilePageStyled = styled(boxPageStyled)`
   width: 300px;
   margin: auto;
   gap: 33px;
+  align-items: center;
 
   @media (min-width: 1250px) {
     justify-content: space-around;
@@ -53,6 +54,7 @@ export const profilePageStyled = styled(boxPageStyled)`
   }
 
   @media (min-width: 750px) {
+    align-items: flex-start;
     display: flex;
     flex-direction: row;
   }
@@ -222,6 +224,7 @@ export const buttonFriendStyled = styled.button`
   text-align: center;
   padding: 5px 10px 5px 10px;
   border-radius: 8px;
+  transition: all 0.3s;
 
   box-shadow: 0px 4px 21px -4px #00000033;
   border: none;
@@ -353,6 +356,8 @@ export const imgBoxStyled = styled.div`
   grid-template-columns: repeat(3, 1fr);
 
   img {
+    min-height: 100px;
+    min-width: 100px;
     width: 100%;
     height: 100%;
     object-fit: cover;

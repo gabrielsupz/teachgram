@@ -21,12 +21,19 @@ export function LoginPage() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     event.preventDefault()
-    await LoginUser({ email, password }).then((token: string | null) => {
-      if (token) {
-        setAuthToken(token)
-        navigate(from)
-      }
-    })
+    try {
+      await LoginUser({ email, password }).then((token: string | null) => {
+        if (token) {
+          setAuthToken(token)
+          navigate(from)
+        }
+      })
+    } catch (err) {
+      loginDataIncorrect()
+    }
+  }
+  const loginDataIncorrect = () => {
+    document.getElementById('userOrPasswordIncorrect')?.classList.add('active')
   }
 
   return (
@@ -60,8 +67,8 @@ export function LoginPage() {
                 <input type="checkbox" name="" id="" /> Lembrar senha
               </label>
               <a href="">Esqueci minha senha</a>
-              <h5 className="active">
-                <p className="ball" /> Senha incorreta
+              <h5 id="userOrPasswordIncorrect">
+                <p className="ball" /> Email ou senha incorreto
               </h5>
             </S.rememberAndForgotPassword>
           </div>

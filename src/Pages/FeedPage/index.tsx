@@ -8,16 +8,20 @@ import { CreatePostModal } from '../../Components/CreatePostModal'
 import { Loading } from '../../Components/Loading'
 import { GetFriendsPosts } from '../../services/UserAndPost.service'
 import { useAuthContext } from '../../Contexts/AuthContext'
+import { UpdatePostModal } from '../../Components/UpdatePostModal'
+import { useUpdatePostData } from '../../Contexts/UpdatePostDataContext'
+import { useLoading } from '../../Contexts/LoadingContext'
 
 export interface PostDataType {
-  author: string
-  authorPhoto: string
+  author?: string
+  authorPhoto?: string
+  authorId: number
   id: number
-  title: string
+  title?: string
   description: string
   photoLink: string
-  videoLink: string
-  createdAt: string
+  videoLink?: string
+  createdAt?: string
   updatedAt: string
   likes: number
 }
@@ -27,12 +31,15 @@ export function FeedPage() {
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [posts, setPosts] = useState<PostDataType[]>([])
+  const { setLoading } = useLoading()
 
   useEffect(() => {
+    setLoading(true)
     GetFriendsPosts(authToken, currentPage).then(e => {
       setPosts(e.content)
       setTotalPages(e.totalPages - 1)
     })
+    setLoading(false)
   }, [currentPage, authToken])
 
   const handleNextPostPage = async () => {
@@ -42,8 +49,6 @@ export function FeedPage() {
       setPosts(e.content)
       setCurrentPage(nextPage)
     })
-
-    console.log('Page: ' + nextPage, 'Total Pages: ' + totalPages)
   }
 
   useEffect(() => {
@@ -87,7 +92,7 @@ export function FeedPage() {
               </div>
             </>
           ) : (
-            <h3>Sem posts</h3>
+            <h3>Sem posts 🥲</h3>
           )}
           <MobileNav />
         </S.feedListStyled>
@@ -119,6 +124,8 @@ export function FeedPage() {
             />
           </svg>
         </a>
+
+        <UpdatePostModal />
         <CreatePostModal />
         <FriendsList />
       </S.feedPageStyled>

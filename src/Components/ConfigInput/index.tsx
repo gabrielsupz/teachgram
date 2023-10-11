@@ -1,19 +1,38 @@
+import React, { ChangeEvent } from 'react'
 import * as S from './style'
 
-interface ConfigInput {
+interface ConfigInputProps {
+  id: string
   name: string
   placeholder: string
-  type?: React.InputHTMLAttributes<HTMLInputElement>['type']
+  type?: string
+  value: string
+  onChange: (value: string) => void
 }
 
-export function ConfigInput({ name, placeholder, type = 'text' }: ConfigInput) {
+export function ConfigInput({
+  id,
+  name,
+  placeholder,
+  type = 'text',
+  value,
+  onChange
+}: ConfigInputProps) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value)
+  }
+
   return (
-    <S.labelStyled
-      htmlFor="
-  "
-    >
+    <S.labelStyled htmlFor={id}>
       {name}
-      <input type={type} placeholder={placeholder} />
+      <input
+        id={id}
+        name={name}
+        value={value}
+        onChange={handleChange}
+        type={type}
+        placeholder={placeholder}
+      />
     </S.labelStyled>
   )
 }

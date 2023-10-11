@@ -7,6 +7,8 @@ interface createPostModalProvider {
 interface createPostModalContextType {
   createPostModalIsActive: boolean
   setCreatePostModalIsActive: React.Dispatch<React.SetStateAction<boolean>>
+  updatePostModalIsActive: boolean
+  setUpdatePostModalIsActive: React.Dispatch<React.SetStateAction<boolean>>
 }
 const createPostModalContext = createContext<createPostModalContextType>(
   {} as createPostModalContextType
@@ -17,9 +19,16 @@ export const CreatePostModalProvider = ({
 }: createPostModalProvider) => {
   const [createPostModalIsActive, setCreatePostModalIsActive] =
     useState<boolean>(false)
+  const [updatePostModalIsActive, setUpdatePostModalIsActive] =
+    useState<boolean>(false)
   return (
     <createPostModalContext.Provider
-      value={{ createPostModalIsActive, setCreatePostModalIsActive }}
+      value={{
+        createPostModalIsActive,
+        setCreatePostModalIsActive,
+        setUpdatePostModalIsActive,
+        updatePostModalIsActive
+      }}
     >
       {children}
     </createPostModalContext.Provider>
