@@ -4,6 +4,9 @@ export const contentConfigSectionStyled = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
+  .profileImg {
+    height: 176px;
+  }
 
   .update,
   .confirm {
@@ -45,7 +48,9 @@ export const contentConfigSectionStyled = styled.div`
       left: 60px;
       top: 50px;
     }
+  }
 
+  @media (min-width: 1000px) {
     #imgRectangle {
       min-height: 100vh;
       min-width: 300px;

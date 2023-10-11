@@ -10,7 +10,7 @@ export function FriendItem(user: UserPropsType) {
     setFriendsListIsActive(false)
   }
   return (
-    <S.friendItemStyled key={user.id}>
+    <S.friendItemStyled>
       <img src={user.profileLink} />
       <div>
         <h3>{user.userName}</h3>

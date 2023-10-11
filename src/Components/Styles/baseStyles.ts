@@ -1,7 +1,7 @@
 import styled, { css, keyframes } from 'styled-components'
 
 interface modalProps {
-  active: boolean
+  active?: boolean
 }
 const slideIn = keyframes`
   0% {
@@ -15,14 +15,7 @@ const slideIn = keyframes`
 `
 
 export const modalBaseStyle = styled.div<modalProps>`
-  ${({ active }) =>
-    active
-      ? css`
-          display: flex;
-        `
-      : css`
-          display: none;
-        `}
+  display: ${({ active }) => (active ? 'flex' : 'none')};
 
   position: fixed;
 

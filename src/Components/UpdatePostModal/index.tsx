@@ -35,7 +35,9 @@ export function UpdatePostModal() {
   }
 
   return (
-    <S.createPostModalStyled active={updatePostModalIsActive}>
+    <S.createPostModalStyled
+      active={updatePostModalIsActive ? true : undefined}
+    >
       <div className="box">
         <header>
           <button onClick={() => setUpdatePostModalIsActive(false)}>

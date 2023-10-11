@@ -76,7 +76,7 @@ export function FeedPage() {
           {posts.length > 0 ? (
             <>
               {posts.map(post => (
-                <FeedPost {...post} />
+                <FeedPost key={post.id} {...post} />
               ))}
 
               <div className="pageInteract">

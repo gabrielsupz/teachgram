@@ -39,7 +39,7 @@ export function ProfilePage() {
       name,
       profileLink,
       userName,
-      friendsCount,
+
       postsCount
     },
     setUser
@@ -83,8 +83,9 @@ export function ProfilePage() {
   }, [configSection, urlid])
 
   useEffect(() => {
-    getPosts(id)
-    console.log(isFriend)
+    if (id) {
+      getPosts(id)
+    }
   }, [id, authId])
 
   const getPosts = async (userId: number) => {

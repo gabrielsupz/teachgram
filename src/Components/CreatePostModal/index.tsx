@@ -58,7 +58,9 @@ export function CreatePostModal() {
   }
 
   return (
-    <S.createPostModalStyled active={createPostModalIsActive}>
+    <S.createPostModalStyled
+      active={createPostModalIsActive ? true : undefined}
+    >
       <div className="box">
         <header>
           {inSecondStage ? (

@@ -207,6 +207,7 @@ export function ConfigSection() {
           <S.inSpecificSection>
             <h2>Editar Perfil</h2>
             <img
+              className="profileImg"
               src={
                 user?.profileLink ||
                 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv8NfrKHYJHjf3FxKhrD9OEO17wd6YXGzfs_j3lDUFz7JsGQZR09IyyD9EVo6Z3jxH3MQ&usqp=CAU'
