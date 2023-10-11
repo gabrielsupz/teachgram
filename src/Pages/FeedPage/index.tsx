@@ -28,7 +28,7 @@ export interface PostDataType {
 
 export function FeedPage() {
   const { authToken } = useAuthContext()
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentPage, setCurrentPage] = useState(0)
   const [totalPages, setTotalPages] = useState(1)
   const [posts, setPosts] = useState<PostDataType[]>([])
   const { setLoading } = useLoading()

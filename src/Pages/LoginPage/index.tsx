@@ -1,5 +1,5 @@
 import * as S from './style'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { HeaderLogo } from '../../Components/HeaderLogo'
 import { FcGoogle } from 'react-icons/fc'
 import { BsApple } from 'react-icons/bs'
@@ -12,10 +12,14 @@ import { useAuthContext } from '../../Contexts/AuthContext'
 export function LoginPage() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const { setAuthToken } = useAuthContext()
+  const { setAuthToken, authToken } = useAuthContext()
   const navigate = useNavigate()
   const location = useLocation()
   const { from } = location.state || { from: { pathname: '/' } }
+
+  useEffect(() => {
+    if (authToken) navigate('/feed')
+  }, [])
 
   const handleLoginButton = async (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>

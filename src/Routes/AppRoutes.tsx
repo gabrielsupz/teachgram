@@ -58,7 +58,7 @@ export function AppRoutes() {
               <Route path="/profile" element={<ProfilePage />} />
               <Route path="/profile/:urlid" element={<ProfilePage />} />
               <Route path="/feed" element={<FeedPage />} />
-              <Route path="/" element={<FeedPage />} />
+              <Route path="*" element={<FeedPage />} />
             </Route>
           </>
         )}

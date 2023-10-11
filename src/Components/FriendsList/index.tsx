@@ -10,15 +10,15 @@ export function FriendsList() {
   const { friendsListIsActive, setFriendsListIsActive } = useFriendsList()
   const { authToken } = useAuthContext()
   const [friends, setFriends] = useState<UserPropsType[] | null>()
-  const [currentPage, setCurrentPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(0)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [totalPages, setTotalPages] = useState(1)
   const [pageDivActive, setPageDivActive] = useState(1)
 
   useEffect(() => {
     GetFriends(authToken, currentPage).then(e => {
       setFriends(e.content)
       setTotalPages(e.totalPages - 1)
-
+      console.log(e)
       alterDivPage()
     })
   }, [friendsListIsActive, currentPage])

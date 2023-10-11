@@ -4,7 +4,8 @@ import { useState } from 'react'
 import { BackArrowButton } from '../../Components/BackArrowButton'
 import {
   RegisterUserProps,
-  RegisterUser
+  RegisterUser,
+  LoginUser
 } from '../../services/UserAndPost.service'
 import { Loading } from '../../Components/Loading'
 import { useLoading } from '../../Contexts/LoadingContext'
@@ -33,7 +34,7 @@ export function RegisterPage() {
       (document.getElementById('password') as HTMLInputElement)?.value || ''
 
     if (!name || !userName || !email || !description || !phone || !password) {
-      alert('Por favor, preencha todos os campos obrigatórios')
+      document.getElementById('fieldNotFilledMessage')?.classList.add('active')
       return
     }
 
@@ -47,7 +48,7 @@ export function RegisterPage() {
       profileLink: ''
     }
     setUserData(inputsUserData)
-    console.log(userData)
+
     setProfilePhotoSection(true)
   }
   const handleSaveButton = async () => {
@@ -64,10 +65,17 @@ export function RegisterPage() {
         userName: userData.userName,
         profileLink: profileLink
       }).then(() => {
-        setLoading(false)
+        LoginUser({
+          email: userData.email,
+          password: userData.password
+        }).then(() => {
+          setLoading(false)
+          navigate('/feed')
+        })
       })
     } catch (error) {
-      console.error(error)
+      setProfilePhotoSection(false)
+      alert('Erro: talvez algum dado já tenha sido cadastrado por outro usário')
     } finally {
       setLoading(false)
     }
@@ -153,7 +161,7 @@ export function RegisterPage() {
                     placeholder="Digite sua senha"
                   />
                 </S.labelAndInputsStyled>
-                <h5 className="active">
+                <h5 id="fieldNotFilledMessage">
                   {' '}
                   <p className="ball" /> Campo não preenchido
                 </h5>

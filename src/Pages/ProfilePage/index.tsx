@@ -186,8 +186,8 @@ export function ProfilePage() {
                           <path
                             d="M1.04612 3.78052L3.63542 6.31263C3.84152 6.51418 4.1749 6.50016 4.36335 6.28203L8.927 0.999817"
                             stroke="#666666"
-                            stroke-width="2"
-                            stroke-linecap="round"
+                            strokeWidth="2"
+                            strokeLinecap="round"
                           />
                         </svg>
                       </S.unfriendButtonStyle>
